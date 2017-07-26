@@ -1,0 +1,7 @@
+create database mockapp;
+use mockapp;
+create table pracownik(
+id int primary key auto_increment,
+imie varchar(50) not null,
+nazwisko varchar(50) not null
+);
