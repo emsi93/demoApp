@@ -14,4 +14,10 @@ public interface ServiceInterface {
     void save(Pracownik pracownik);
 
     List<Pracownik> findAll();
+
+    void update(Pracownik pracownik);
+
+    void delete(Integer id);
+
+    void delete(Pracownik pracownik);
 }

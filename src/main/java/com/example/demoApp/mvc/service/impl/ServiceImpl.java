@@ -43,4 +43,20 @@ public class ServiceImpl implements ServiceInterface {
         return pracownikRepository.findAll();
     }
 
+    @Override
+    public void update(Pracownik pracownik) {
+        pracownikRepository.save(pracownik);
+    }
+
+    @Override
+    public void delete(Integer id) {
+        pracownikRepository.deleteById(id);
+    }
+
+    @Override
+    public void delete(Pracownik pracownik) {
+        pracownikRepository.delete(pracownik);
+    }
+
+
 }

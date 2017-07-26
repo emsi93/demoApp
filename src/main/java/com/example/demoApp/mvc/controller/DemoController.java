@@ -20,8 +20,9 @@ public class DemoController {
     @RequestMapping(value ={"/", "index"})
     public ModelAndView index(){
         ModelAndView modelAndView = new ModelAndView("index");
-        List<Pracownik> pracownikList = service.findAll();
-        System.out.println("STOP");
+        Pracownik pracownik = service.findById(3);
+        pracownik.setNazwisko("Wieteska");
+        service.update(pracownik);
         return modelAndView;
     }
 }
