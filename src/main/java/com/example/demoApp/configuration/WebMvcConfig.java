@@ -5,12 +5,17 @@ import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguratio
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.data.web.config.SpringDataWebConfiguration;
+import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+
+import java.util.Locale;
 
 @Configuration
 @EnableWebMvc
@@ -20,7 +25,6 @@ public class WebMvcConfig extends SpringDataWebConfiguration {
         super(context, conversionService);
     }
 
-    @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resources/**").addResourceLocations("/WEB-INF/resources/");
     }
@@ -33,21 +37,23 @@ public class WebMvcConfig extends SpringDataWebConfiguration {
         return resolver;
     }
 
-   /* @Bean
+    @Bean
     public ReloadableResourceBundleMessageSource messageSource(){
         ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
         messageSource.setBasename("classpath:messages");
         messageSource.setDefaultEncoding("UTF-8");
         return messageSource;
     }
-
+    /*
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
     }*/
 
-    @Bean
-    public LocaleChangeInterceptor localeInterceptor(){
+
+
+   /* @Bean
+    public LocaleChangeInterceptor localeInterceptor() {
         LocaleChangeInterceptor interceptor = new LocaleChangeInterceptor();
         interceptor.setParamName("lang");
         return interceptor;
@@ -55,8 +61,9 @@ public class WebMvcConfig extends SpringDataWebConfiguration {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
+
         registry.addInterceptor(localeInterceptor());
-    }
+    }*/
 
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {

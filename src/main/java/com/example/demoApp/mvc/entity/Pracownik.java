@@ -1,8 +1,13 @@
 package com.example.demoApp.mvc.entity;
 
 
+
+
+import lombok.*;
+
 import javax.persistence.*;
 
+@Data
 @Entity
 @Table(name = "pracownik", uniqueConstraints = { @UniqueConstraint(columnNames = { "id" }) })
 public class Pracownik {
@@ -33,34 +38,4 @@ public class Pracownik {
         this.imie = imie;
         this.nazwisko = nazwisko;
     }
-
-    public String getImie() {
-        return imie;
-    }
-
-    public void setImie(String imie) {
-        this.imie = imie;
-    }
-
-    public String getNazwisko() {
-        return nazwisko;
-    }
-
-    public void setNazwisko(String nazwisko) {
-        this.nazwisko = nazwisko;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    @Override
-    public String toString() {
-        return "Pracownik [id=" + id + ", imie=" + imie + ", nazwisko=" + nazwisko + "]";
-    }
-
 }
