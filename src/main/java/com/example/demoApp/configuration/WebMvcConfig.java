@@ -67,7 +67,7 @@ public class WebMvcConfig extends SpringDataWebConfiguration {
 
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-//////////////////
+////////////////////////////
         configurer.enable();
     }
 }
