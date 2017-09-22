@@ -1,7 +1,6 @@
 package com.example.demoApp.configuration;
 
 import org.springframework.beans.factory.ObjectFactory;
-import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,6 +19,7 @@ import java.util.Locale;
 @Configuration
 @EnableWebMvc
 public class WebMvcConfig extends SpringDataWebConfiguration {
+
 
     public WebMvcConfig(ApplicationContext context, ObjectFactory<ConversionService> conversionService) {
         super(context, conversionService);
@@ -44,6 +44,26 @@ public class WebMvcConfig extends SpringDataWebConfiguration {
         messageSource.setDefaultEncoding("UTF-8");
         return messageSource;
     }
+
+    @Bean
+    public LocaleResolver localeResolver() {
+        SessionLocaleResolver slr = new SessionLocaleResolver();
+        slr.setDefaultLocale(Locale.US);
+        return slr;
+    }
+
+    @Bean
+    public LocaleChangeInterceptor localeChangeInterceptor() {
+        LocaleChangeInterceptor lci = new LocaleChangeInterceptor();
+        lci.setParamName("lang");
+        return lci;
+    }
+
+
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(localeChangeInterceptor());
+    }
+
     /*
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
@@ -70,4 +90,6 @@ public class WebMvcConfig extends SpringDataWebConfiguration {
 ////////////////////////////
         configurer.enable();
     }
+
+
 }
