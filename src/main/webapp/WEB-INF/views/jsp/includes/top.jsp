@@ -8,5 +8,10 @@
      </head>
         <link rel="stylesheet" type="text/css" href="/resources/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="/resources/bootstrap/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" type="text/css" href="/resources/css/main.css">
         <script src="/resources/bootstrap/js/bootstrap.min.js"></script>
-    <body>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="/resources/js/main.js"></script>
+    <body class="page">
+           <div class="container">
+                <div class="row">

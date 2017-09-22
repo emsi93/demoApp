@@ -11,17 +11,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.servlet.ModelAndView;
 
+import java.security.NoSuchAlgorithmException;
+
 
 @Controller
-public class DemoController {
+@RequestMapping("login")
+public class LoginController {
 
     @Autowired
     private ServiceInterface service;
 
     @RequestMapping(value ={"/", "index"})
-    public ModelAndView index(){
+    public ModelAndView index() throws NoSuchAlgorithmException {
         ModelAndView modelAndView = new ModelAndView("index");
-        Pracownik pracownik = new Pracownik();
         return modelAndView;
     }
 
