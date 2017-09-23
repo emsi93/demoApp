@@ -1,0 +1,4 @@
+- polskie znaki,
+- widoki(Access Denied, Error Login),
+- przekierowanie po zlych danych logowania,
+- remember me???

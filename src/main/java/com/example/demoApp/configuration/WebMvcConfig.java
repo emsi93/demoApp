@@ -64,30 +64,8 @@ public class WebMvcConfig extends SpringDataWebConfiguration {
         registry.addInterceptor(localeChangeInterceptor());
     }
 
-    /*
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-        configurer.enable();
-    }*/
-
-
-
-   /* @Bean
-    public LocaleChangeInterceptor localeInterceptor() {
-        LocaleChangeInterceptor interceptor = new LocaleChangeInterceptor();
-        interceptor.setParamName("lang");
-        return interceptor;
-    }
-
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-
-        registry.addInterceptor(localeInterceptor());
-    }*/
-
-    @Override
-    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-////////////////////////////
         configurer.enable();
     }
 
