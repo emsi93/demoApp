@@ -1,29 +1,24 @@
 package com.example.demoApp.mvc.controller;
 
 
-import com.example.demoApp.mvc.entity.Pracownik;
-import com.example.demoApp.mvc.service.ServiceInterface;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.servlet.ModelAndView;
-
-import java.security.NoSuchAlgorithmException;
 
 
 @Controller
-@RequestMapping("login")
+@RequestMapping("/login")
 public class LoginController {
 
-    @Autowired
-    private ServiceInterface service;
+    private final static Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
 
-    @RequestMapping(value ={"/", "index"})
-    public ModelAndView index() throws NoSuchAlgorithmException {
-        ModelAndView modelAndView = new ModelAndView("index");
+
+    @RequestMapping(value ={"/", "logIn"})
+    public ModelAndView index() {
+        ModelAndView modelAndView = new ModelAndView("login");
         return modelAndView;
     }
 
