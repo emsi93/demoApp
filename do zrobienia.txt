@@ -1,4 +1,3 @@
-- polskie znaki,
-- widoki(Access Denied, Error Login),
-- przekierowanie po zlych danych logowania,
+- polskie znaki
 - remember me???
+- logi do pliku

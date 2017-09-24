@@ -1,4 +1,4 @@
-<%@include file="includes/top.jsp" %>
+<%@include file="includes/top-login.jsp" %>
     <div class="row box">
         <div class="col-lg-4"></div>
         <div class="col-lg-4">
@@ -33,7 +33,7 @@
                         </div>
                         </br>
                         <spring:message code='registration.create.an.account.button' var="createButton"/>
-                        <form:input class="submit btn btn-primary" path="" type="submit"
+                        <form:input class="submit btn btn-success" path="" type="submit"
                                      								value="${createButton}" id="register"></form:input>
                     </form:form>
                 </div>
@@ -49,4 +49,4 @@
     </br>
     </br>
     </br>
-<%@include file="includes/bottom.jsp" %>
+<%@include file="includes/bottom-login.jsp" %>

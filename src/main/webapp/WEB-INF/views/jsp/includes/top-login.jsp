@@ -15,4 +15,3 @@
         <script src="/resources/js/main.js"></script>
     <body class="page">
            <div class="container">
-                <div class="row error-top">
