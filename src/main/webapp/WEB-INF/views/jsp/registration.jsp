@@ -31,6 +31,10 @@
                             <label for="password"><spring:message code='registration.password'/></label>
                             <form:input id="password" name="password" type="password" path="password" class="form-control"/>
                         </div>
+                        <div class="form-group">
+                                                    <label for="password2"><spring:message code='registration.confirm.password'/></label>
+                                                    <form:input id="password2" name="password2" type="password" path="password2" class="form-control"/>
+                                                </div>
                         </br>
                         <spring:message code='registration.create.an.account.button' var="createButton"/>
                         <form:input class="submit btn btn-success" path="" type="submit"

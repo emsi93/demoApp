@@ -7,7 +7,7 @@ public class ErrorCode {
     private final static String LETTERS_AND_NUMBERS="0123456789ABCDEFGHJKMNOPRSTUWXYZ";
 
     private static Random rn = new Random();
-    private static int max = LETTERS_AND_NUMBERS.length();
+    private static int max = LETTERS_AND_NUMBERS.length()-1;
     private static int min = 0;
 
     public static String generate(){

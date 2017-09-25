@@ -1,3 +1,5 @@
-- polskie znaki
 - remember me???
 - logi do pliku
+- cookies
+- reset password
+- logowanie facebook
