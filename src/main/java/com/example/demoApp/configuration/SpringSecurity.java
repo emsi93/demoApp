@@ -1,6 +1,5 @@
 package com.example.demoApp.configuration;
 
-import com.example.demoApp.mvc.service.ServiceUserInterface;
 import com.example.demoApp.utils.PasswordEncoderUtil;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,7 +60,8 @@ public class SpringSecurity extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/main/")
                 .and().exceptionHandling()
                 .accessDeniedPage("/error/accessDenied")
-                .and().csrf();
+                .and().csrf()
+                .and().rememberMe().rememberMeParameter("remember");
 
     }
 

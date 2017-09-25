@@ -1,8 +1,8 @@
 package com.example.demoApp.mvc.controller;
 
-import com.example.demoApp.mvc.entity.User;
+import com.example.demoApp.mvc.form.UserForm;
 import com.example.demoApp.mvc.service.ServiceUserInterface;
-import com.example.demoApp.mvc.validator.UserValidator;
+import com.example.demoApp.mvc.validator.UserFormValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +31,7 @@ public class RegistrationController {
     private ServiceUserInterface serviceUserInterface;
 
     @Autowired
-    private UserValidator userValidator;
+    private UserFormValidator userValidator;
 
     @InitBinder("userForm")
     protected void initRegisterFormValidator(WebDataBinder binder) {
@@ -39,10 +39,10 @@ public class RegistrationController {
     }
 
     @RequestMapping(value="signup", method = RequestMethod.GET)
-    public ModelAndView errorLoginGet(User userOrNull, Integer messageCodeOrNull){
+    public ModelAndView errorLoginGet(UserForm userOrNull, Integer messageCodeOrNull){
         ModelAndView modelAndView = new ModelAndView("registration");
 
-        userOrNull = new User(null,null,null,false,null);
+        userOrNull = new UserForm(null,null,null,null);
         if (messageCodeOrNull != null) {
             switch (messageCodeOrNull) {
                 case 1:
@@ -60,7 +60,7 @@ public class RegistrationController {
     }
 
     @RequestMapping(value="signup", method = RequestMethod.POST)
-    public ModelAndView errorLoginPost(@ModelAttribute("userForm") @Validated User user,
+    public ModelAndView errorLoginPost(@ModelAttribute("userForm") @Validated UserForm user,
                                        BindingResult result) throws NoSuchAlgorithmException {
 
         if(result.hasErrors())

@@ -3,6 +3,7 @@ package com.example.demoApp.utils;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Scope;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -13,6 +14,7 @@ import java.security.NoSuchAlgorithmException;
 @Component
 @ConfigurationProperties(prefix="application")
 @Data
+@Scope("singleton")
 public class PasswordEncoderUtil implements PasswordEncoder{
 
     @Value("${password.encoder.algorithm}")
