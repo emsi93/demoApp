@@ -45,23 +45,19 @@ public class SpringSecurity extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
-                .antMatchers("/main/").permitAll()
-                .antMatchers("/main/index").permitAll()
-                .antMatchers("/login/logIn").permitAll()
-                .antMatchers("/main/signup").permitAll()
-                .antMatchers("/main/home").hasAuthority("ROLE_ADMIN").anyRequest()
+                .antMatchers("/main/*").permitAll()
+                .antMatchers("/security/logIn").permitAll()
+                .antMatchers("/app/home").hasAuthority("ROLE_ADMIN").anyRequest()
                 .authenticated().and().formLogin()
-                .loginPage("/login/logIn").failureUrl("/error/failureLogin").failureForwardUrl("/error/failureLogin")
-                .defaultSuccessUrl("/main/home").successForwardUrl("/main/home")
+                .loginPage("/security/logIn").failureUrl("/error/failureLogin").failureForwardUrl("/error/failureLogin")
+                .defaultSuccessUrl("/app/home").successForwardUrl("/app/home")
                 .usernameParameter("login")
                 .passwordParameter("password")
                 .and().logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/main/logout")).logoutUrl("/main/logout")
-                .logoutSuccessUrl("/main/")
+                .logoutRequestMatcher(new AntPathRequestMatcher("/security/logout")).logoutUrl("/security/logout")
                 .and().exceptionHandling()
                 .accessDeniedPage("/error/accessDenied")
-                .and().csrf()
-                .and().rememberMe().rememberMeParameter("remember");
+                .and().csrf();
 
     }
 

@@ -14,23 +14,4 @@ public class ErrorCodeTest {
 
         assertEquals(6, errorCode.length());
     }
-
-    @Test
-    public void toLongOfErrorCode() {
-
-        String errorCode = ErrorCode.generate();
-        errorCode = errorCode + "1";
-
-        assertNotEquals(6, errorCode.length());
-    }
-
-    @Test
-    public void tooShortOfErrorCode() {
-
-        String errorCode = ErrorCode.generate();
-        errorCode = errorCode.substring(1);
-
-        assertNotEquals(6, errorCode.length());
-    }
-
 }

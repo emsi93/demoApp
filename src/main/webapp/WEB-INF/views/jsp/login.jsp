@@ -8,7 +8,7 @@
                         <h4><label><spring:message code='login.title'/></label></h4>
                       </div>
                       <div class="panel-body">
-                        <form action="/login/logIn" method="post">
+                        <form action="/security/logIn" method="post">
                           <label for="login"><spring:message code='login.username'/></label>
                           <div class="input-group">
                              <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>

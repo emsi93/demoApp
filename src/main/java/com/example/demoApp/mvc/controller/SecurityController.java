@@ -10,10 +10,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 @Controller
-@RequestMapping("/login")
-public class LoginController {
+@RequestMapping("/security")
+public class SecurityController {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(SecurityController.class);
 
 
     @RequestMapping(value ={"/", "logIn"})
@@ -22,5 +22,11 @@ public class LoginController {
         return modelAndView;
     }
 
+
+    @RequestMapping("logout")
+    public ModelAndView logout(){
+        ModelAndView modelAndView = new ModelAndView("logout");
+        return modelAndView;
+    }
 
 }
