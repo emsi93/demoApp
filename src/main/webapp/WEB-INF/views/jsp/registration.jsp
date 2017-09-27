@@ -26,7 +26,6 @@
                             <label for="email"><spring:message code='registration.email'/></label>
                             <form:input id="email" name = "email" type="text" path="email" class="form-control"/>
                         </div>
-                        </br>
                         <div class="form-group">
                             <label for="password"><spring:message code='registration.password'/></label>
                             <form:input id="password" name="password" type="password" path="password" class="form-control"/>

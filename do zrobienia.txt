@@ -2,4 +2,5 @@
 - logi do pliku
 - cookies
 - reset password
+- aktywacja konta po rejestracji
 - logowanie facebook

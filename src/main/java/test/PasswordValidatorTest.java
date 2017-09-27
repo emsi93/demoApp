@@ -15,7 +15,7 @@ public class PasswordValidatorTest {
     }
 
     @Test
-    public void tooShortPassword(){
+    public void shouldCheckWhetherPasswordIsTooShort(){
         String password = "test";
         passwordValidator.setMinLength(8);
 
@@ -24,7 +24,7 @@ public class PasswordValidatorTest {
     }
 
     @Test
-    public void tooLongPassword(){
+    public void shouldCheckWhetherPasswordIsTooLong(){
         String password = "012345678901234567890";
         passwordValidator.setMaxLength(20);
 
@@ -33,7 +33,7 @@ public class PasswordValidatorTest {
     }
 
     @Test
-    public void ifContainLargeLetters(){
+    public void shouldCheckWhetherPasswordContainsLargeLetters(){
         String password = "A12345678";
         passwordValidator.setMinNumberOfLargeLetters(1);
 
@@ -42,7 +42,7 @@ public class PasswordValidatorTest {
     }
 
     @Test
-    public void ifContainSpecialCharacters(){
+    public void shouldCheckWhetherPasswordContainsSpecialChars(){
         String password = "123ADs@1234";
         passwordValidator.setMinNumberOfSpecialChars(1);
 

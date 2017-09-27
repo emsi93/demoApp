@@ -3,7 +3,7 @@
         <div class="col-lg-4"></div>
         <div class="col-lg-4">
             Main Page
-            <a href="/login/logIn"><spring:message code='login.button.send'/></a>
+            <a href="/security/logIn"><spring:message code='login.button.send'/></a>
         </div>
         <div class="col-lg-4"></div>
     </div>
