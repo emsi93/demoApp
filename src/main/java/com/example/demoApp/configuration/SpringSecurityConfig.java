@@ -4,20 +4,25 @@ import com.example.demoApp.utils.PasswordEncoderUtil;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
 
 import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
 @Data
-public class SpringSecurity extends WebSecurityConfigurerAdapter {
+public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private PasswordEncoderUtil passwordEncoder;
@@ -30,6 +35,13 @@ public class SpringSecurity extends WebSecurityConfigurerAdapter {
 
     @Value("${spring.queries.roles-query}")
     private String rolesQuery;
+
+    @Bean
+    public PersistentTokenRepository persistentTokenRepository() {
+        JdbcTokenRepositoryImpl db = new JdbcTokenRepositoryImpl();
+        db.setDataSource(dataSource);
+        return db;
+    }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth)
@@ -54,10 +66,10 @@ public class SpringSecurity extends WebSecurityConfigurerAdapter {
                 .usernameParameter("login")
                 .passwordParameter("password")
                 .and().logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/security/logout")).logoutUrl("/security/logout")
+                .logoutRequestMatcher(new AntPathRequestMatcher("/security/logout")).logoutUrl("/security/logout").deleteCookies("JSESSIONID")
                 .and().exceptionHandling()
                 .accessDeniedPage("/error/accessDenied")
-                .and().csrf();
+                .and().csrf().disable();
 
     }
 

@@ -26,6 +26,8 @@ public class WebMvcConfig extends SpringDataWebConfiguration {
     }
 
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/webjars/**").addResourceLocations(
+                "classpath:/META-INF/resources/webjars/");
         registry.addResourceHandler("/resources/**").addResourceLocations("/WEB-INF/resources/");
     }
 
@@ -38,7 +40,7 @@ public class WebMvcConfig extends SpringDataWebConfiguration {
     }
 
     @Bean
-    public ReloadableResourceBundleMessageSource messageSource(){
+    public ReloadableResourceBundleMessageSource messageSource() {
         ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
         messageSource.setBasename("classpath:messages");
         messageSource.setDefaultEncoding("UTF-8");
@@ -48,7 +50,6 @@ public class WebMvcConfig extends SpringDataWebConfiguration {
     @Bean
     public LocaleResolver localeResolver() {
         SessionLocaleResolver slr = new SessionLocaleResolver();
-        slr.setDefaultLocale(Locale.ENGLISH);
         return slr;
     }
 

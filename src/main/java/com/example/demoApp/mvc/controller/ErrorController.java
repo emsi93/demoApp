@@ -1,17 +1,15 @@
 package com.example.demoApp.mvc.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+@Slf4j
 @Controller
 @RequestMapping("/error")
 public class ErrorController {
-
-    private final static Logger LOGGER = LoggerFactory.getLogger(ErrorController.class);
-
 
     @RequestMapping("failureLogin")
     public ModelAndView failureLogin(){
