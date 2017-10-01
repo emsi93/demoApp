@@ -25,3 +25,5 @@ nbdist/
 
 .classpath
 .project
+
+logs

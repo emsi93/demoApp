@@ -1,24 +1,25 @@
 package com.example.demoApp.mvc.validator;
 
+import com.example.demoApp.configuration.Config;
 import com.example.demoApp.mvc.form.UserForm;
 import com.example.demoApp.mvc.repository.UserRepository;
-import com.example.demoApp.utils.ValidationUtils;
+import com.example.demoApp.mvc.validator.messages.AbstractMessagesValidator;
+import com.example.demoApp.mvc.validator.messages.MessagesValidatorEN;
+import com.example.demoApp.mvc.validator.messages.MessagesValidatorPL;
+import com.example.demoApp.utils.ValidationUtil;
+import com.sun.istack.internal.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
-import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 
-
 @Component("userValidator")
 @Scope("singleton")
 public class UserFormValidator implements Validator {
-    private static final String OBLIGATORY_FIELD_ERROR_MSG = "Pole jest wymagane.";
-    private static final String EMAIL_IS_USED = "E-mail jest już użyty.";
-    private static final String LOGIN_IS_USED = "Login jest juz użyty";
-    private static final String DIFFERENT_PASSWORD = "Podane hasła muszą być takie same.";
+
 
     @Autowired
     private UserRepository userRepository;
@@ -33,28 +34,37 @@ public class UserFormValidator implements Validator {
 
     @Override
     public void validate(@Nullable Object o, Errors errors) {
-
         UserForm user = (UserForm) o;
 
-        ValidationUtils.rejectIfEmpty(errors, "login",
-                OBLIGATORY_FIELD_ERROR_MSG);
+        AbstractMessagesValidator messages = null;
 
-        ValidationUtils.rejectIfEmpty(errors, "email",
-                OBLIGATORY_FIELD_ERROR_MSG);
+        if(Config.LANG.equals("pl"))
+            messages = new MessagesValidatorPL();
+        else
+            messages = new MessagesValidatorEN();
 
-        ValidationUtils.rejectIfEmpty(errors, "password",
-                OBLIGATORY_FIELD_ERROR_MSG);
+        ValidationUtil.rejectIfEmpty(errors, "login",
+                messages.getObligatoryFieldErrorMsg());
+
+        ValidationUtil.rejectIfEmpty(errors, "email",
+                messages.getObligatoryFieldErrorMsg());
+
+        ValidationUtil.rejectIfEmpty(errors, "password",
+                messages.getObligatoryFieldErrorMsg());
+
+        ValidationUtil.rejectIfEmpty(errors, "password2",
+                messages.getObligatoryFieldErrorMsg());
 
         Long countByLogin = userRepository.countByLogin(((UserForm) o).getLogin());
         Long countByEmail = userRepository.countByEmail(((UserForm) o).getEmail());
 
-        if(countByEmail>0)
-            ValidationUtils.reject(errors, "email", EMAIL_IS_USED);
+        if (countByEmail > 0)
+            ValidationUtil.reject(errors, "email", messages.getEmailIsUsed());
 
-        if(countByLogin>0)
-            ValidationUtils.reject(errors, "login", LOGIN_IS_USED);
+        if (countByLogin > 0)
+            ValidationUtil.reject(errors, "login", messages.getLoginIsUsed());
 
-        if(!((UserForm) o).getPassword().equals(((UserForm) o).getPassword2()))
-            ValidationUtils.reject(errors, "password", DIFFERENT_PASSWORD);
+        if (!((UserForm) o).getPassword().equals(((UserForm) o).getPassword2()))
+            ValidationUtil.reject(errors, "password", messages.getDifferentPassword());
     }
 }

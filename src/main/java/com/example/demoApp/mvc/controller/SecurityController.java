@@ -2,23 +2,20 @@ package com.example.demoApp.mvc.controller;
 
 
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-
+@Slf4j
 @Controller
 @RequestMapping("/security")
 public class SecurityController {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(SecurityController.class);
-
-
     @RequestMapping(value ={"/", "logIn"})
     public ModelAndView index() {
         ModelAndView modelAndView = new ModelAndView("login");
+        modelAndView.addObject("recaptchaUrl",null);
         return modelAndView;
     }
 

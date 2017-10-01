@@ -25,7 +25,6 @@
                           									value="${_csrf.token}" />
                           <button type="submit" class="btn btn-success"><spring:message code='login.button.send'/></button>
                           <span style="float:right"><a href=""><spring:message code='login.forgot.password'/></a></span>
-                          <button type="button" class="btn btn-primary">Facebook</button>
                          </form>
                       </div>
                       <div class="panel-footer">

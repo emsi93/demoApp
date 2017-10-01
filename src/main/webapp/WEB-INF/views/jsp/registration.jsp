@@ -21,27 +21,41 @@
                         <div class="form-group">
                             <label for="login"><spring:message code='registration.username'/></label>
                             <form:input id="login" name = "login" type="text" path="login" class="form-control"/>
+                             <div class="errors">
+                                 <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                                 <form:errors path="login" element="div" />
+                             </div>
                         </div>
                         <div class="form-group">
                             <label for="email"><spring:message code='registration.email'/></label>
                             <form:input id="email" name = "email" type="text" path="email" class="form-control"/>
+                             <div>
+                                 <form:errors path="email" element="div" />
+                             </div>
                         </div>
                         <div class="form-group">
                             <label for="password"><spring:message code='registration.password'/></label>
                             <form:input id="password" name="password" type="password" path="password" class="form-control"/>
+                            <div>
+                                <form:errors path="password" element="div" />
+                            </div>
                         </div>
                         <div class="form-group">
-                                                    <label for="password2"><spring:message code='registration.confirm.password'/></label>
-                                                    <form:input id="password2" name="password2" type="password" path="password2" class="form-control"/>
-                                                </div>
+                             <label for="password2"><spring:message code='registration.confirm.password'/></label>
+                             <form:input id="password2" name="password2" type="password" path="password2" class="form-control"/>
+                             <div>
+                                 <form:errors path="password2" element="div" />
+                             </div>
+                         </div>
                         </br>
+                         <div class="g-recaptcha" data-sitekey="${recaptchaSiteKey}"></div>
                         <spring:message code='registration.create.an.account.button' var="createButton"/>
                         <form:input class="submit btn btn-success" path="" type="submit"
                                      								value="${createButton}" id="register"></form:input>
                     </form:form>
                 </div>
 				<div class="panel-footer">
-					<spring:message code='login.new.user'/> <a href="/main/"><spring:message code='registration.return'/></a>
+					<a href="/main/"><spring:message code='registration.return'/></a>
 				</div>
 			</div>
         </div>
