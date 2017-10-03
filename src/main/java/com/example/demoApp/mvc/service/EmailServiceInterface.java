@@ -1,6 +1,6 @@
 package com.example.demoApp.mvc.service;
 
-public interface ServiceEmailInterface {
+public interface EmailServiceInterface {
 
     public void sendLinkActivation(String email);
 
