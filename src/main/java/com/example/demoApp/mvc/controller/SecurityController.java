@@ -2,6 +2,7 @@ package com.example.demoApp.mvc.controller;
 
 
 
+import com.example.demoApp.utils.JspViews;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +15,7 @@ public class SecurityController {
 
     @RequestMapping(value ={"/", "logIn"})
     public ModelAndView index() {
-        ModelAndView modelAndView = new ModelAndView("login");
+        ModelAndView modelAndView = new ModelAndView(JspViews.LOGIN_VIEW);
         modelAndView.addObject("recaptchaUrl",null);
         return modelAndView;
     }
@@ -22,7 +23,7 @@ public class SecurityController {
 
     @RequestMapping("logout")
     public ModelAndView logout(){
-        ModelAndView modelAndView = new ModelAndView("logout");
+        ModelAndView modelAndView = new ModelAndView(JspViews.LOGOUT_VIEW);
         return modelAndView;
     }
 

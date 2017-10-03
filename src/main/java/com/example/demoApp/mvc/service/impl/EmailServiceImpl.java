@@ -1,10 +1,10 @@
 package com.example.demoApp.mvc.service.impl;
 
-import com.example.demoApp.mvc.service.ServiceEmailInterface;
+import com.example.demoApp.mvc.service.EmailServiceInterface;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ServiceEmailImpl implements ServiceEmailInterface {
+public class EmailServiceImpl implements EmailServiceInterface {
 
     @Override
     public void sendLinkActivation(String email) {

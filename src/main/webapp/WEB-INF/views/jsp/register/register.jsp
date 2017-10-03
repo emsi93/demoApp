@@ -1,4 +1,4 @@
-<%@include file="includes/top-login.jsp" %>
+<%@include file="../includes/top-login.jsp" %>
     <div class="row box">
         <div class="col-lg-4"></div>
         <div class="col-lg-4">
@@ -28,23 +28,26 @@
                         </div>
                         <div class="form-group">
                             <label for="email"><spring:message code='registration.email'/></label>
-                            <form:input id="email" name = "email" type="text" path="email" class="form-control"/>
-                             <div>
+                            <form:input id="email" name = "email" type="email" path="email" class="form-control"/>
+                             <div class="errors">
+                                 <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
                                  <form:errors path="email" element="div" />
                              </div>
                         </div>
                         <div class="form-group">
                             <label for="password"><spring:message code='registration.password'/></label>
                             <form:input id="password" name="password" type="password" path="password" class="form-control"/>
-                            <div>
-                                <form:errors path="password" element="div" />
+                           <div class="errors">
+                               <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                               <form:errors path="password" element="div" />
                             </div>
                         </div>
                         <div class="form-group">
                              <label for="password2"><spring:message code='registration.confirm.password'/></label>
                              <form:input id="password2" name="password2" type="password" path="password2" class="form-control"/>
-                             <div>
-                                 <form:errors path="password2" element="div" />
+                             <div class="errors">
+                                  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                                  <form:errors path="password2" element="div" />
                              </div>
                          </div>
                         </br>
@@ -66,4 +69,4 @@
     </br>
     </br>
     </br>
-<%@include file="includes/bottom-login.jsp" %>
+<%@include file="../includes/bottom-login.jsp" %>

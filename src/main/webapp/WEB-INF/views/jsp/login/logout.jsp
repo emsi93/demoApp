@@ -1,4 +1,4 @@
-<%@include file="includes/top.jsp" %>
+<%@include file="../includes/top.jsp" %>
         <div class="col-lg-1"></div>
         <div class="col-lg-10">
             <div class="alert alert-success">
@@ -33,4 +33,4 @@
     </br>
     </br>
     </br>
-<%@include file="includes/bottom.jsp" %>
+<%@include file="../includes/bottom.jsp" %>
