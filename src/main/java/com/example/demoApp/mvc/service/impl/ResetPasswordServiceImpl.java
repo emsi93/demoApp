@@ -31,7 +31,7 @@ import java.util.Optional;
 @Slf4j
 @Service
 @Transactional
-class ResetPasswordServiceImpl implements ResetPasswordServiceInterface {
+public class ResetPasswordServiceImpl implements ResetPasswordServiceInterface {
 
     @Autowired
     private EmailServiceInterface emailServiceInterface;
@@ -76,11 +76,11 @@ class ResetPasswordServiceImpl implements ResetPasswordServiceInterface {
     public ModelAndViewUtils resetPasswordGet(HttpServletRequest request, HttpServletResponse response, PasswordsForm passwordsForm, Integer messageCode) {
         ModelAndViewUtils modelAndView = new ModelAndViewUtils(request, JspViews.RESET_PASSWORD_VIEW);
         String token = request.getParameter(Config.TOKEN_PARAM);
-        modelAndView.addObject("errorUrlCode",gerErroUrlCode(request,token));
+        modelAndView.addObject("errorUrlCode", gerErroUrlCode(request, token));
         modelAndView.addObject("messageCode", MessageCode.getMessageCode(messageCode));
         modelAndView.addObject("recaptchaSiteKey", captchaConfig.getSiteKey());
         modelAndView.addObject("passwordsForm", passwordsForm);
-        modelAndView.addObject("url", "/password/resetPassword?token="+token);
+        modelAndView.addObject("url", "/password/resetPassword?token=" + token);
         return modelAndView;
     }
 
