@@ -7,5 +7,6 @@ public class MessagesValidatorEN extends AbstractMessagesValidator{
         emailIsUsed = "Email is already used.";
         loginIsUsed = "Login is already used.";
         differentPassword = "Passwords must be the same.";
+        emailIsNotValid = "E-mail is not valid.";
     }
 }

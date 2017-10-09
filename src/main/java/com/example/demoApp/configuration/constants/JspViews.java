@@ -1,4 +1,4 @@
-package com.example.demoApp.utils;
+package com.example.demoApp.configuration.constants;
 
 public class JspViews {
 
@@ -15,4 +15,8 @@ public class JspViews {
     public static final String ACCESS_DENIED_VIEW = "error/accessDenied";
 
     public static final String HOME_VIEW = "app/home";
+
+    public static final String RESET_PASSWORD_VIEW = "password/resetPassword";
+
+    public static final String EMAIL_FORM = "password/emailForm";
 }

@@ -7,6 +7,7 @@ public abstract class AbstractMessagesValidator {
     protected String emailIsUsed;
     protected String loginIsUsed;
     protected String differentPassword;
+    protected String emailIsNotValid;
 
     public String getObligatoryFieldErrorMsg() {
         return obligatoryFieldErrorMsg;
@@ -22,5 +23,9 @@ public abstract class AbstractMessagesValidator {
 
     public String getDifferentPassword() {
         return differentPassword;
+    }
+
+    public String getEmailIsNotValid() {
+        return emailIsNotValid;
     }
 }

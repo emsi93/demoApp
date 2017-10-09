@@ -7,6 +7,7 @@
     <head>
         <title>DemoApp</title>
      </head>
+        <script src="${recaptchaUrl}"></script>
         <link rel="stylesheet" type="text/css" href="/resources/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="/resources/bootstrap/css/bootstrap-theme.min.css">
         <link rel="stylesheet" type="text/css" href="/resources/css/main.css">

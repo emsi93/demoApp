@@ -1,4 +1,4 @@
-package com.example.demoApp.utils;
+package com.example.demoApp.configuration.constants;
 
 public class Languages {
 

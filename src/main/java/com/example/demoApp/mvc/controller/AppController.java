@@ -1,17 +1,20 @@
 package com.example.demoApp.mvc.controller;
 
-import com.example.demoApp.utils.JspViews;
+import com.example.demoApp.configuration.constants.JspViews;
+import com.example.demoApp.utils.ModelAndViewUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Controller
 @RequestMapping("/app")
 public class AppController {
 
     @RequestMapping("/home")
-    public ModelAndView home() {
-        ModelAndView modelAndView = new ModelAndView(JspViews.HOME_VIEW);
+    public ModelAndViewUtils home(HttpServletRequest request, HttpServletResponse response) {
+        ModelAndViewUtils modelAndView = new ModelAndViewUtils(request, JspViews.HOME_VIEW);
         return modelAndView;
     }
 }

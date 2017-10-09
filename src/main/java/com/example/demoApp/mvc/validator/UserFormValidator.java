@@ -6,11 +6,10 @@ import com.example.demoApp.mvc.repository.UserRepository;
 import com.example.demoApp.mvc.validator.messages.AbstractMessagesValidator;
 import com.example.demoApp.mvc.validator.messages.MessagesValidatorEN;
 import com.example.demoApp.mvc.validator.messages.MessagesValidatorPL;
-import com.example.demoApp.utils.Languages;
+import com.example.demoApp.configuration.constants.Languages;
 import com.example.demoApp.utils.ValidationUtil;
 import com.sun.istack.internal.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -39,7 +38,7 @@ public class UserFormValidator implements Validator {
 
         AbstractMessagesValidator messages = null;
 
-        if(Config.LANG.equals(Languages.POLISH))
+        if(Config.LANG.equals(Languages.POLISH) || Config.LANG.equals(null))
             messages = new MessagesValidatorPL();
         else
             messages = new MessagesValidatorEN();
