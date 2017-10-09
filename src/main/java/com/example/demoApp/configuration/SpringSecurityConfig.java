@@ -57,8 +57,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
-                .antMatchers("/main/*").permitAll()
-                .antMatchers("/security/logIn").permitAll()
+                .antMatchers("/main/*", "/rest/*", "/password/*", "/security/logIn").permitAll()
                 .antMatchers("/app/home").hasAuthority("ROLE_ADMIN").anyRequest()
                 .authenticated().and().formLogin()
                 .loginPage("/security/logIn").failureUrl("/error/failureLogin").failureForwardUrl("/error/failureLogin")
@@ -66,7 +65,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .usernameParameter("login")
                 .passwordParameter("password")
                 .and().logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/security/logout")).logoutUrl("/security/logout").deleteCookies("JSESSIONID")
+                .logoutRequestMatcher(new AntPathRequestMatcher("../security/logout")).logoutUrl("../security/logout")
                 .and().exceptionHandling()
                 .accessDeniedPage("/error/accessDenied")
                 .and().csrf().disable();

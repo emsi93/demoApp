@@ -2,11 +2,14 @@ package com.example.demoApp.mvc.controller;
 
 
 
-import com.example.demoApp.utils.JspViews;
+import com.example.demoApp.configuration.constants.JspViews;
+import com.example.demoApp.utils.ModelAndViewUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Slf4j
 @Controller
@@ -14,16 +17,15 @@ import org.springframework.web.servlet.ModelAndView;
 public class SecurityController {
 
     @RequestMapping(value ={"/", "logIn"})
-    public ModelAndView index() {
-        ModelAndView modelAndView = new ModelAndView(JspViews.LOGIN_VIEW);
-        modelAndView.addObject("recaptchaUrl",null);
+    public ModelAndViewUtils login(HttpServletRequest request, HttpServletResponse response) {
+        ModelAndViewUtils modelAndView = new ModelAndViewUtils(request,JspViews.LOGIN_VIEW);
         return modelAndView;
     }
 
 
     @RequestMapping("logout")
-    public ModelAndView logout(){
-        ModelAndView modelAndView = new ModelAndView(JspViews.LOGOUT_VIEW);
+    public ModelAndViewUtils logout(HttpServletRequest request, HttpServletResponse response){
+        ModelAndViewUtils modelAndView = new ModelAndViewUtils(request, JspViews.LOGOUT_VIEW);
         return modelAndView;
     }
 

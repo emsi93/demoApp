@@ -19,14 +19,13 @@ import java.net.URL;
 @Scope("singleton")
 public class CaptchaValidator {
 
+    private final static String USER_AGENT = "USER_AGENT";
+
     @Value("${recaptcha.url}")
     private String url;
 
     @Value("${recaptcha.secret-key}")
     private String secretKey;
-
-
-    private final static String USER_AGENT = "USER_AGENT";
 
     public boolean verify(String gRecaptchaResponse) throws IOException {
         if (gRecaptchaResponse == null || "".equals(gRecaptchaResponse)) {

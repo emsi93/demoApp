@@ -1,6 +1,7 @@
 package com.example.demoApp.mvc.entity;
 
 import lombok.Data;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 
@@ -26,6 +27,7 @@ public class User {
     @Column(name = "active", nullable = false)
     private boolean active;
 
+    @ColumnDefault("ROLE_USER")
     @Column(name = "role", nullable = false, length=20)
     private String role;
 
