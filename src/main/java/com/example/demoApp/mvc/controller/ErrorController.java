@@ -23,8 +23,20 @@ public class ErrorController {
     }
 
     @RequestMapping("accessDenied")
-    public ModelAndView accessDenied(HttpServletRequest request, HttpServletResponse response){
+    public ModelAndViewUtils accessDenied(HttpServletRequest request, HttpServletResponse response){
         ModelAndViewUtils modelAndView = new ModelAndViewUtils(request, JspViews.ACCESS_DENIED_VIEW);
+        return modelAndView;
+    }
+
+    @RequestMapping("errorLinkActive")
+    public ModelAndViewUtils errorLinkActive(HttpServletRequest request, HttpServletResponse response){
+        ModelAndViewUtils modelAndView = new ModelAndViewUtils(request, JspViews.ERROR_LINK_ACTIVE_VIEW);
+        return modelAndView;
+    }
+
+    @RequestMapping("errorLinkReset")
+    public ModelAndViewUtils errorLinkReset(HttpServletRequest request, HttpServletResponse response){
+        ModelAndViewUtils modelAndView = new ModelAndViewUtils(request, JspViews.ERROR_LINK_RESET_VIEW);
         return modelAndView;
     }
 }

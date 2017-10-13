@@ -17,8 +17,9 @@ import javax.servlet.http.HttpServletResponse;
 public class SecurityController {
 
     @RequestMapping(value ={"/", "logIn"})
-    public ModelAndViewUtils login(HttpServletRequest request, HttpServletResponse response) {
+    public ModelAndViewUtils login(HttpServletRequest request, HttpServletResponse response, Integer messageCodeOrNull) {
         ModelAndViewUtils modelAndView = new ModelAndViewUtils(request,JspViews.LOGIN_VIEW);
+        modelAndView.addObject("messageCode", messageCodeOrNull);
         return modelAndView;
     }
 

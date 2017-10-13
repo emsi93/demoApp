@@ -11,13 +11,7 @@
                                       <spring:message code='change.password.success'/>
                                   </div>
                              </c:if>
-         <c:choose>
-                 <c:when  test = "${errorUrlCode == 3}">
-                                                  <div class="alert alert-danger">
-                                                      <spring:message code='change.password.invalid.url'/>
-                                                  </div>
-                                               </c:when >
-                  <c:otherwise>
+
                           <form:form method="post" modelAttribute="passwordsForm" action="${url}" role="form">
                                                   <div class="form-group">
                                                       <label for="password"><spring:message code='change.password'/></label>
@@ -41,9 +35,6 @@
                                                   <form:input class="submit btn btn-success" path="" type="submit"
                                                                								value="${changePasswordButton}" id="register"></form:input>
                                               </form:form>
-                      </c:otherwise>
-         </c:choose>
-
 
                     </div>
                     <div class="col-lg-1"></div>

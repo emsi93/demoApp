@@ -14,9 +14,15 @@ public class JspViews {
 
     public static final String ACCESS_DENIED_VIEW = "error/accessDenied";
 
+    public static final String ERROR_LINK_ACTIVE_VIEW = "error/errorLinkActive";
+
+    public static final String ERROR_LINK_RESET_VIEW = "error/errorLinkReset";
+
     public static final String HOME_VIEW = "app/home";
 
     public static final String RESET_PASSWORD_VIEW = "password/resetPassword";
 
     public static final String EMAIL_FORM = "password/emailForm";
+
+
 }
