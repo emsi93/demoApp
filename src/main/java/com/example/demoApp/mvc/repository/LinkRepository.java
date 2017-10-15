@@ -14,5 +14,7 @@ public interface LinkRepository extends JpaRepository<Link, Integer> {
 
     public Link findByLinkAndType(String link, String type);
 
+    public Link findByEmailAndType(String email, String type);
+
     public void deleteByEmailAndType(String email, String type);
 }

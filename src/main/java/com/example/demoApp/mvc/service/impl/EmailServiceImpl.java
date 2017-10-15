@@ -17,6 +17,7 @@ import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.sql.Timestamp;
+import java.util.Optional;
 import java.util.Properties;
 
 @Slf4j
@@ -56,12 +57,20 @@ public class EmailServiceImpl implements EmailServiceInterface {
             Transport.send(message);
             log.info("Sent message successfully to " + email);
             Link link = new Link(email.getUrl(), email.getRecipient(), getCurrentTime(), email.getType());
-            linkRepository.save(link);
+            saveLink(link);
         } catch (MessagingException e) {
             log.info(ErrorCode.generate() + " Message not sent to " + email);
             e.printStackTrace();
         }
 
+    }
+
+    private void saveLink(Link link) {
+        Link link2 = Optional.ofNullable(linkRepository.findByEmailAndType(link.getEmail(), link.getType()))
+                .orElse(new Link(null,null,null,null));
+        if(link2.getEmail() != null)
+            linkRepository.delete(link2);
+        linkRepository.save(link);
     }
 
     private Message buildMessage(Session session, Email email) throws MessagingException {
