@@ -1,3 +1,1 @@
-- reset password (dodac waznosc linku)
-- aktywacja konta po rejestracji
 - bootstrap z mavena
