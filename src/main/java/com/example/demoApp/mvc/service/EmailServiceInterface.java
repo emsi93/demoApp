@@ -1,9 +1,8 @@
 package com.example.demoApp.mvc.service;
 
+import com.example.demoApp.utils.email.Email;
+
 public interface EmailServiceInterface {
 
-    public void sendLinkActivation(String email);
-
-    public void sendResetLinkPassword(String email);
-
+    public void sendEmail(Email email);
 }

@@ -3,6 +3,18 @@
                 <div class="col-lg-4"></div>
                 <div class="col-lg-4">
                     <center><img src="/resources/images/user.png"></center>
+
+                    <c:if test = "${messageCode == 1}">
+                                                      <div class="alert alert-success">
+                                                          <spring:message code='login.account.activate'/>
+                                                      </div>
+                                                 </c:if>
+                    <c:if test = "${messageCode == 2}">
+                                                      <div class="alert alert-success">
+                                                          <spring:message code='login.password.changed'/>
+                                                      </div>
+                                                 </c:if>
+
                     <div class="panel panel-warning box">
                       <div class="panel-heading">
                         <h4><label><spring:message code='login.title'/></label></h4>

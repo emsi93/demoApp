@@ -1,31 +1,30 @@
 package com.example.demoApp.mvc.service.impl;
 
-import com.example.demoApp.configuration.Config;
-import com.example.demoApp.mvc.entity.ResetPasswordLink;
-import com.example.demoApp.mvc.repository.ResetPasswordLinkRepository;
+import com.example.demoApp.mvc.entity.Link;
+import com.example.demoApp.mvc.repository.LinkRepository;
 import com.example.demoApp.mvc.service.EmailServiceInterface;
+import com.example.demoApp.utils.email.Email;
 import com.example.demoApp.utils.ErrorCode;
-import com.example.demoApp.utils.TokenUtil;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.sql.Timestamp;
 import java.util.Properties;
 
 @Slf4j
 @Service
 @Data
 @ConfigurationProperties(prefix = "application")
+@Transactional
 public class EmailServiceImpl implements EmailServiceInterface {
-
-    @Value("${host}")
-    private String applicationHost;
 
     @Value("${address.email}")
     private String userName;
@@ -46,37 +45,31 @@ public class EmailServiceImpl implements EmailServiceInterface {
     private String mailSmtpPort;
 
     @Autowired
-    private ResetPasswordLinkRepository resetPasswordLinkRepository;
+    private LinkRepository linkRepository;
 
     @Override
-    public void sendLinkActivation(String email) {
-
-    }
-
-    @Override
-    public void sendResetLinkPassword(String email) {
+    public void sendEmail(Email email) {
         Properties properties = initProperties(mailSmtpAuth, mailSmtpStarttlsEnable, mailSmtpHost, mailSmtpPort);
         Session session = getSession(userName, password, properties);
         try {
-            String link = applicationHost + "/password/resetPassword?" + Config.TOKEN_PARAM + "=" + TokenUtil.generateToken();
-            String topic = "Reset password";
-            Message message = buildMessage(session, email, topic, link);
+            Message message = buildMessage(session, email);
             Transport.send(message);
             log.info("Sent message successfully to " + email);
-            ResetPasswordLink resetPaswordLink = new ResetPasswordLink(link, email);
-            resetPasswordLinkRepository.save(resetPaswordLink);
+            Link link = new Link(email.getUrl(), email.getRecipient(), getCurrentTime(), email.getType());
+            linkRepository.save(link);
         } catch (MessagingException e) {
             log.info(ErrorCode.generate() + " Message not sent to " + email);
             e.printStackTrace();
         }
+
     }
 
-    private Message buildMessage(Session session, String email, String topic, String link) throws MessagingException {
+    private Message buildMessage(Session session, Email email) throws MessagingException {
         Message message = new MimeMessage(session);
         message.setFrom(new InternetAddress(userName));
-        message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
-        message.setSubject(topic);
-        message.setText(link);
+        message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email.getRecipient()));
+        message.setSubject(email.getTopic());
+        message.setText(email.getUrl());
         return message;
     }
 
@@ -97,4 +90,12 @@ public class EmailServiceImpl implements EmailServiceInterface {
                     }
                 });
     }
+
+    private Timestamp getCurrentTime(){
+        java.util.Date date = new java.util.Date();
+        Timestamp timestamp = new Timestamp(date.getTime());
+        return timestamp;
+    }
+
+
 }

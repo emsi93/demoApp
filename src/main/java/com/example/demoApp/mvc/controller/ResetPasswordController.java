@@ -1,22 +1,12 @@
 package com.example.demoApp.mvc.controller;
 
 
-import com.example.demoApp.configuration.CaptchaConfig;
-import com.example.demoApp.configuration.Config;
-import com.example.demoApp.configuration.constants.JspViews;
-import com.example.demoApp.mvc.entity.ResetPasswordLink;
-import com.example.demoApp.mvc.entity.User;
 import com.example.demoApp.mvc.form.EmailForm;
 import com.example.demoApp.mvc.form.PasswordsForm;
-import com.example.demoApp.mvc.repository.ResetPasswordLinkRepository;
-import com.example.demoApp.mvc.repository.UserRepository;
 import com.example.demoApp.mvc.service.ResetPasswordServiceInterface;
-import com.example.demoApp.mvc.validator.CaptchaValidator;
 import com.example.demoApp.mvc.validator.EmailAddressValidator;
 import com.example.demoApp.mvc.validator.PasswordsFormValidator;
-import com.example.demoApp.utils.MessageCode;
 import com.example.demoApp.utils.ModelAndViewUtils;
-import com.example.demoApp.utils.PasswordEncoderUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

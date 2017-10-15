@@ -3,11 +3,12 @@ package com.example.demoApp.mvc.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 @Data
 @Entity
-@Table(name = "reset_password_link", uniqueConstraints = {@UniqueConstraint(columnNames = {"id"})})
-public class ResetPasswordLink {
+@Table(name = "link", uniqueConstraints = {@UniqueConstraint(columnNames = {"id"})})
+public class Link {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,18 +21,28 @@ public class ResetPasswordLink {
     @Column(name = "email", nullable = false, length = 100)
     private String email;
 
-    public ResetPasswordLink() {
+    @Column(name = "data", nullable = false)
+    private Timestamp data;
+
+    @Column(name="type", nullable = false)
+    private String type;
+
+    public Link() {
 
     }
 
-    public ResetPasswordLink(String link, String email) {
+    public Link(String link, String email, Timestamp data, String type) {
         this.link = link;
         this.email = email;
+        this.data = data;
+        this.type = type;
     }
 
-    public ResetPasswordLink(Integer id, String link, String email) {
+    public Link(Integer id, String link, String email, Timestamp data, String type) {
         this.id = id;
         this.link = link;
         this.email = email;
+        this.data = data;
+        this.type = type;
     }
 }
