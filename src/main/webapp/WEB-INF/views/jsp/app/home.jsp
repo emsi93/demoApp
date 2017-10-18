@@ -1,5 +1,5 @@
 ﻿<%@include file="../includes/top.jsp" %>
-    <div class="row">
+    <div class="row error-top">
         <div class="col-lg-4"></div>
         <div class="col-lg-4">
             Main Page After Login

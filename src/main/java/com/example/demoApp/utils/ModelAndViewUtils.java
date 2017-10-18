@@ -1,7 +1,8 @@
 package com.example.demoApp.utils;
 
 import com.example.demoApp.configuration.Config;
-import com.example.demoApp.configuration.constants.Languages;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.Cookie;
@@ -12,6 +13,15 @@ public class ModelAndViewUtils extends ModelAndView {
     public ModelAndViewUtils(HttpServletRequest request, String jspName) {
         super(jspName);
         addObject("recaptchaUrl", returnRecaptchaUrl(request));
+    }
+
+    public static ModelAndViewUtils createModelAndViewWithUserName(HttpServletRequest request, String jspName){
+        ModelAndViewUtils modelAndView = new ModelAndViewUtils(request,jspName);
+        Authentication auth = SecurityContextHolder.getContext()
+                .getAuthentication();
+        String userName = auth.getName();
+        modelAndView.addObject("username", userName);
+        return modelAndView;
     }
 
     private String returnRecaptchaUrl(HttpServletRequest request) {

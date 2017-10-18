@@ -1,8 +1,6 @@
 package com.example.demoApp.mvc.entity;
 
 import lombok.Data;
-import org.hibernate.annotations.ColumnDefault;
-
 import javax.persistence.*;
 
 @Data

@@ -2,6 +2,8 @@ package com.example.demoApp.mvc.controller;
 
 import com.example.demoApp.configuration.constants.JspViews;
 import com.example.demoApp.utils.ModelAndViewUtils;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -14,7 +16,7 @@ public class AppController {
 
     @RequestMapping("/home")
     public ModelAndViewUtils home(HttpServletRequest request, HttpServletResponse response) {
-        ModelAndViewUtils modelAndView = new ModelAndViewUtils(request, JspViews.HOME_VIEW);
+        ModelAndViewUtils modelAndView = ModelAndViewUtils.createModelAndViewWithUserName(request,JspViews.HOME_VIEW);
         return modelAndView;
     }
 }
