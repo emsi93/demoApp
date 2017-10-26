@@ -1,10 +1,10 @@
 package com.example.demoApp.utils;
 
+import org.springframework.validation.Errors;
+
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import org.springframework.validation.Errors;
 
 public class ValidationUtil {
 

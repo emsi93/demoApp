@@ -8,8 +8,7 @@ import org.springframework.stereotype.Component;
 import java.sql.Timestamp;
 import java.util.Calendar;
 
-@Component("dateUtl")
-@Scope
+@Component
 @Data
 public class DateUtil {
 

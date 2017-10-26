@@ -2,20 +2,17 @@ package com.example.demoApp.mvc.validator;
 
 import com.example.demoApp.mvc.form.PasswordsForm;
 import com.example.demoApp.utils.ValidationUtil;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.support.MessageSourceAccessor;
-import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 @Component("passwordsFormValidator")
-@Scope("singleton")
+@RequiredArgsConstructor
 public class PasswordsFormValidator implements Validator {
 
-    @Autowired
-    private  MessageSourceAccessor messageSourceAccessor;
+    private final MessageSourceAccessor messageSourceAccessor;
 
     @Override
     public boolean supports(Class<?> aClass) {
@@ -23,7 +20,7 @@ public class PasswordsFormValidator implements Validator {
     }
 
     @Override
-    public void validate(@Nullable Object o, Errors errors) {
+    public void validate( Object o, Errors errors) {
         PasswordsForm passwordsForm = (PasswordsForm) o;
 
         ValidationUtil.rejectIfEmpty(errors,"password",messageSourceAccessor.getMessage("validator.obligatory.field"));

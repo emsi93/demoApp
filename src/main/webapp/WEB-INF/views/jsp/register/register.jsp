@@ -1,4 +1,4 @@
-<%@include file="../includes/top-login.jsp" %>
+<%@include file="../includes/top.jsp" %>
     <div class="row box">
         <div class="col-lg-4"></div>
         <div class="col-lg-4">
@@ -69,4 +69,4 @@
     </br>
     </br>
     </br>
-<%@include file="../includes/bottom-login.jsp" %>
+<%@include file="../includes/bottom.jsp" %>
