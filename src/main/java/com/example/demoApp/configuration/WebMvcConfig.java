@@ -21,13 +21,11 @@ import java.util.Locale;
 public class WebMvcConfig extends SpringDataWebConfiguration {
 
 
-    public WebMvcConfig(ApplicationContext context, ObjectFactory<ConversionService> conversionService) {
+   /* public WebMvcConfig(ApplicationContext context, ObjectFactory<ConversionService> conversionService) {
         super(context, conversionService);
-    }
+    }*/
 
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/webjars/**").addResourceLocations(
-                "classpath:/META-INF/resources/webjars/");
         registry.addResourceHandler("/resources/**").addResourceLocations("/WEB-INF/resources/");
     }
 

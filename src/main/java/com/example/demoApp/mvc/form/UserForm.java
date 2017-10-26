@@ -10,6 +10,10 @@ public class UserForm {
     private String password;
     private String password2;
 
+    public UserForm(){
+
+    }
+
     public UserForm(String login, String email, String password, String password2) {
         this.login = login;
         this.email = email;

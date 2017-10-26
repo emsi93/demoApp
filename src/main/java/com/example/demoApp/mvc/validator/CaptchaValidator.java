@@ -3,7 +3,6 @@ package com.example.demoApp.mvc.validator;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import javax.json.Json;
@@ -16,7 +15,6 @@ import java.net.URL;
 @ConfigurationProperties(prefix="application")
 @Data
 @Component("captchaValidator")
-@Scope("singleton")
 public class CaptchaValidator {
 
     private final static String USER_AGENT = "USER_AGENT";

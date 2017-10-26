@@ -1,6 +1,5 @@
 package com.example.demoApp.mvc.controller;
 
-import com.example.demoApp.configuration.constants.JspViews;
 import com.example.demoApp.mvc.service.ActiveUserServiceInterface;
 import com.example.demoApp.utils.ModelAndViewUtils;
 import org.springframework.beans.factory.annotation.Autowired;

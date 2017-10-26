@@ -3,7 +3,6 @@ package com.example.demoApp.utils;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Scope;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +12,6 @@ import java.security.NoSuchAlgorithmException;
 @Component
 @ConfigurationProperties(prefix="application")
 @Data
-@Scope("singleton")
 public class PasswordEncoderUtil implements PasswordEncoder{
 
     @Value("${password.encoder.algorithm}")
@@ -21,7 +19,7 @@ public class PasswordEncoderUtil implements PasswordEncoder{
 
     public String encode(String password) throws NoSuchAlgorithmException {
 
-        MessageDigest md = MessageDigest.getInstance(algorithm);
+        MessageDigest md = MessageDigest.getInstance(algorithm.trim());
         md.update(password.getBytes());
 
         byte byteData[] = md.digest();
@@ -35,7 +33,6 @@ public class PasswordEncoderUtil implements PasswordEncoder{
    @Override
     public String encode(CharSequence charSequence) {
         try {
-            MessageDigest md = MessageDigest.getInstance(algorithm);
             String password = charSequence.toString();
             return encode(password);
         } catch (NoSuchAlgorithmException e) {

@@ -4,9 +4,7 @@ import com.example.demoApp.mvc.form.EmailForm;
 import com.example.demoApp.mvc.repository.UserRepository;
 import com.example.demoApp.utils.ValidationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.context.support.MessageSourceAccessor;
-import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
@@ -15,7 +13,6 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 
 @Component("changePasswordValidator")
-@Scope("singleton")
 public class EmailAddressValidator implements Validator {
 
     @Autowired
@@ -30,7 +27,7 @@ public class EmailAddressValidator implements Validator {
     }
 
     @Override
-    public void validate(@Nullable Object o, Errors errors) {
+    public void validate(Object o, Errors errors) {
         EmailForm emailForm = (EmailForm) o;
 
         ValidationUtil.rejectIfEmpty(errors, "email",
