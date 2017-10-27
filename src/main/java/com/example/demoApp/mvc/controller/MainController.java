@@ -14,8 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 @Slf4j
 public class MainController {
 
-
-
     @RequestMapping(value={"/","index"})
     public ModelAndViewUtils index(HttpServletRequest request, HttpServletResponse response){
         ModelAndViewUtils modelAndView = new ModelAndViewUtils(request, JspViews.INDEX_VIEW);

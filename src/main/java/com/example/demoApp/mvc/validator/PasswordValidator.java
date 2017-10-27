@@ -9,10 +9,9 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component("passwordValidator")
+@Component
 @ConfigurationProperties(prefix="application")
 @Data
-@Scope("singleton")
 public class PasswordValidator {
 
     // SPECIAL CHARACTERS

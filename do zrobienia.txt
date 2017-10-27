@@ -1,2 +1,0 @@
-- bootstrap z mavena
-- cxf jax-rs

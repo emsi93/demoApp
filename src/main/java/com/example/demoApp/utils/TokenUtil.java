@@ -11,5 +11,4 @@ public class TokenUtil {
         String token = Long.toString( longToken, 16 );
         return token;
     }
-
 }

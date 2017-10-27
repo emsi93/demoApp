@@ -10,9 +10,9 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 @Component
-@ConfigurationProperties(prefix="application")
+@ConfigurationProperties(prefix = "application")
 @Data
-public class PasswordEncoderUtil implements PasswordEncoder{
+public class PasswordEncoderUtil implements PasswordEncoder {
 
     @Value("${password.encoder.algorithm}")
     private String algorithm;
@@ -30,7 +30,7 @@ public class PasswordEncoderUtil implements PasswordEncoder{
         return sb.toString();
     }
 
-   @Override
+    @Override
     public String encode(CharSequence charSequence) {
         try {
             String password = charSequence.toString();
@@ -51,7 +51,7 @@ public class PasswordEncoderUtil implements PasswordEncoder{
             e.printStackTrace();
         }
 
-        if(encodePassword.equals(encodedDbPassword))
+        if (encodePassword.equals(encodedDbPassword))
             return true;
         else
             return false;

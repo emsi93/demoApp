@@ -15,7 +15,6 @@ import com.example.demoApp.mvc.service.EmailServiceInterface;
 import com.example.demoApp.mvc.service.ResetPasswordServiceInterface;
 import com.example.demoApp.mvc.validator.CaptchaValidator;
 import com.example.demoApp.utils.DateUtil;
-import com.example.demoApp.utils.MessageCode;
 import com.example.demoApp.utils.ModelAndViewUtils;
 import com.example.demoApp.utils.PasswordEncoderUtil;
 import com.example.demoApp.utils.email.EmailResetPassword;
@@ -71,9 +70,9 @@ public class ResetPasswordServiceImpl implements ResetPasswordServiceInterface {
     private DateUtil dateUtil;
 
     @Override
-    public ModelAndViewUtils emailFormGet(HttpServletRequest request, HttpServletResponse response, EmailForm emailOrNull, Integer messageOrNull) {
+    public ModelAndViewUtils emailFormGet(HttpServletRequest request, HttpServletResponse response, EmailForm emailOrNull, Integer messageCodeOrNull) {
         ModelAndViewUtils modelAndView = new ModelAndViewUtils(request, JspViews.EMAIL_FORM);
-        modelAndView.addObject("messageCode", MessageCode.getMessageCode(messageOrNull));
+        modelAndView.addObject("messageCode", messageCodeOrNull);
         modelAndView.addObject("emailForm", emailOrNull);
         return modelAndView;
     }
@@ -89,12 +88,12 @@ public class ResetPasswordServiceImpl implements ResetPasswordServiceInterface {
     }
 
     @Override
-    public ModelAndViewUtils resetPasswordGet(HttpServletRequest request, HttpServletResponse response, PasswordsForm passwordsForm, Integer messageCode) {
+    public ModelAndViewUtils resetPasswordGet(HttpServletRequest request, HttpServletResponse response, PasswordsForm passwordsForm, Integer messageCodeOrNull) {
         ModelAndViewUtils modelAndView = new ModelAndViewUtils(request, JspViews.RESET_PASSWORD_VIEW);
         String token = request.getParameter(Config.TOKEN_PARAM);
         if(gerErrorUrlCode(request, token) == 3)
             return errorController.errorLinkReset(request,response);
-        modelAndView.addObject("messageCode", MessageCode.getMessageCode(messageCode));
+        modelAndView.addObject("messageCode", messageCodeOrNull);
         modelAndView.addObject("recaptchaSiteKey", captchaConfig.getSiteKey());
         modelAndView.addObject("passwordsForm", passwordsForm);
         modelAndView.addObject("url", "/password/resetPassword?token=" + token);

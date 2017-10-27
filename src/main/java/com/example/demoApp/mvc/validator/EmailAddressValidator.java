@@ -12,7 +12,7 @@ import org.springframework.validation.Validator;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 
-@Component("changePasswordValidator")
+@Component
 public class EmailAddressValidator implements Validator {
 
     @Autowired
@@ -37,7 +37,7 @@ public class EmailAddressValidator implements Validator {
 
         boolean isValidEmail = isValidEmailAddress(emailForm.getEmail());
 
-        if (countByEmail == 0 && isValidEmail == false) {
+        if (countByEmail == 0 || isValidEmail == false) {
             ValidationUtil.reject(errors, "email", messageSourceAccessor.getMessage("validator.email.is.not.valid"));
         }
     }
