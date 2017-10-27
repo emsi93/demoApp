@@ -14,7 +14,7 @@ import java.net.URL;
 
 @ConfigurationProperties(prefix="application")
 @Data
-@Component("captchaValidator")
+@Component
 public class CaptchaValidator {
 
     private final static String USER_AGENT = "USER_AGENT";

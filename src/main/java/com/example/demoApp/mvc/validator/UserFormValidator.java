@@ -4,15 +4,13 @@ import com.example.demoApp.mvc.form.UserForm;
 import com.example.demoApp.mvc.repository.UserRepository;
 import com.example.demoApp.utils.ValidationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 
-@Component("userValidator")
-@Scope("singleton")
+@Component
 public class UserFormValidator implements Validator {
 
     @Autowired

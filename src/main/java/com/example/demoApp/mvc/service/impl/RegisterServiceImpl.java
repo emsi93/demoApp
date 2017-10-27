@@ -10,7 +10,6 @@ import com.example.demoApp.mvc.repository.UserRepository;
 import com.example.demoApp.mvc.service.EmailServiceInterface;
 import com.example.demoApp.mvc.service.RegisterServiceInterface;
 import com.example.demoApp.mvc.validator.CaptchaValidator;
-import com.example.demoApp.utils.MessageCode;
 import com.example.demoApp.utils.ModelAndViewUtils;
 import com.example.demoApp.utils.PasswordEncoderUtil;
 import com.example.demoApp.utils.email.EmailActivation;
@@ -54,7 +53,7 @@ public class RegisterServiceImpl implements RegisterServiceInterface {
     @Override
     public ModelAndViewUtils registerGet(HttpServletRequest request, HttpServletResponse response, UserForm userOrNull, Integer messageCodeOrNull) {
         ModelAndViewUtils modelAndView = new ModelAndViewUtils(request,JspViews.REGISTER_VIEW);
-        modelAndView.addObject("messageCode", MessageCode.getMessageCode(messageCodeOrNull));
+        modelAndView.addObject("messageCode", messageCodeOrNull);
         modelAndView.addObject("recaptchaSiteKey", captchaConfig.getSiteKey());
         modelAndView.addObject("userForm", userOrNull);
         return modelAndView;
