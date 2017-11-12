@@ -1,8 +1,8 @@
-package com.example.demoApp.mvc.service;
+package com.example.demoapp.mvc.service;
 
-import com.example.demoApp.utils.email.Email;
+import com.example.demoapp.utils.email.Email;
 
 public interface EmailServiceInterface {
 
-    public void sendEmail(Email email);
+    void sendEmail(Email email);
 }

@@ -1,4 +1,4 @@
-package com.example.demoApp.utils;
+package com.example.demoapp.utils;
 
 import org.springframework.validation.Errors;
 
@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 
 public class ValidationUtil {
 
-    public static final String EMAIL_REGEX = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+    private static final String EMAIL_REGEX = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
     public static void reject(Errors errors, String fieldName,
                               String errorMessage) {

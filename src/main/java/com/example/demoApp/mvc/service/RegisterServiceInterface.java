@@ -1,7 +1,7 @@
-package com.example.demoApp.mvc.service;
+package com.example.demoapp.mvc.service;
 
-import com.example.demoApp.mvc.form.UserForm;
-import com.example.demoApp.utils.ModelAndViewUtils;
+import com.example.demoapp.mvc.form.UserForm;
+import com.example.demoapp.utils.ModelAndViewUtils;
 import org.springframework.validation.BindingResult;
 
 import javax.servlet.http.HttpServletRequest;

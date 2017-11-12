@@ -1,10 +1,10 @@
-package com.example.demoApp.mvc.controller;
+package com.example.demoapp.mvc.controller;
 
 
-import com.example.demoApp.mvc.form.UserForm;
-import com.example.demoApp.mvc.service.RegisterServiceInterface;
-import com.example.demoApp.mvc.validator.UserFormValidator;
-import com.example.demoApp.utils.ModelAndViewUtils;
+import com.example.demoapp.mvc.form.UserForm;
+import com.example.demoapp.mvc.service.RegisterServiceInterface;
+import com.example.demoapp.mvc.validator.UserFormValidator;
+import com.example.demoapp.utils.ModelAndViewUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

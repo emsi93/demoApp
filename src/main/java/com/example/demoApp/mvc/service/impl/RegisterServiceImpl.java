@@ -1,18 +1,18 @@
-package com.example.demoApp.mvc.service.impl;
+package com.example.demoapp.mvc.service.impl;
 
 
-import com.example.demoApp.configuration.CaptchaConfig;
-import com.example.demoApp.configuration.Config;
-import com.example.demoApp.configuration.constants.JspViews;
-import com.example.demoApp.mvc.entity.User;
-import com.example.demoApp.mvc.form.UserForm;
-import com.example.demoApp.mvc.repository.UserRepository;
-import com.example.demoApp.mvc.service.EmailServiceInterface;
-import com.example.demoApp.mvc.service.RegisterServiceInterface;
-import com.example.demoApp.mvc.validator.CaptchaValidator;
-import com.example.demoApp.utils.ModelAndViewUtils;
-import com.example.demoApp.utils.PasswordEncoderUtil;
-import com.example.demoApp.utils.email.EmailActivation;
+import com.example.demoapp.configuration.CaptchaConfig;
+import com.example.demoapp.configuration.Config;
+import com.example.demoapp.configuration.constants.JspViews;
+import com.example.demoapp.mvc.entity.User;
+import com.example.demoapp.mvc.form.UserForm;
+import com.example.demoapp.mvc.repository.UserRepository;
+import com.example.demoapp.mvc.service.EmailServiceInterface;
+import com.example.demoapp.mvc.service.RegisterServiceInterface;
+import com.example.demoapp.mvc.validator.CaptchaValidator;
+import com.example.demoapp.utils.ModelAndViewUtils;
+import com.example.demoapp.utils.PasswordEncoderUtil;
+import com.example.demoapp.utils.email.EmailActivation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

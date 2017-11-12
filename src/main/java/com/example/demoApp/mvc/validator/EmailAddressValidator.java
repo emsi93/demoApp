@@ -1,8 +1,8 @@
-package com.example.demoApp.mvc.validator;
+package com.example.demoapp.mvc.validator;
 
-import com.example.demoApp.mvc.form.EmailForm;
-import com.example.demoApp.mvc.repository.UserRepository;
-import com.example.demoApp.utils.ValidationUtil;
+import com.example.demoapp.mvc.form.EmailForm;
+import com.example.demoapp.mvc.repository.UserRepository;
+import com.example.demoapp.utils.ValidationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.stereotype.Component;

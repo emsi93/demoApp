@@ -1,4 +1,4 @@
-package com.example.demoApp.configuration;
+package com.example.demoapp.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,6 +16,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
         registry.addResourceHandler("/resources/**").addResourceLocations("/WEB-INF/resources/");
     }
 
@@ -37,8 +38,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
     @Bean
     public MessageSourceAccessor messageSourceAccessor() {
-        MessageSourceAccessor messageSourceAccessor = new MessageSourceAccessor(messageSource());
-        return messageSourceAccessor;
+        return new MessageSourceAccessor(messageSource());
     }
 
     @Bean
@@ -57,6 +57,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
     }
 
 
+    @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(localeChangeInterceptor());
     }

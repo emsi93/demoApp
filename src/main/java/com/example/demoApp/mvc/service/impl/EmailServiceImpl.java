@@ -1,10 +1,10 @@
-package com.example.demoApp.mvc.service.impl;
+package com.example.demoapp.mvc.service.impl;
 
-import com.example.demoApp.mvc.entity.Link;
-import com.example.demoApp.mvc.repository.LinkRepository;
-import com.example.demoApp.mvc.service.EmailServiceInterface;
-import com.example.demoApp.utils.ErrorCode;
-import com.example.demoApp.utils.email.Email;
+import com.example.demoapp.mvc.entity.Link;
+import com.example.demoapp.mvc.repository.LinkRepository;
+import com.example.demoapp.mvc.service.EmailServiceInterface;
+import com.example.demoapp.utils.ErrorCode;
+import com.example.demoapp.utils.email.Email;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -94,6 +94,7 @@ public class EmailServiceImpl implements EmailServiceInterface {
     private Session getSession(String userName, String password, Properties props) {
         return Session.getInstance(props,
                 new javax.mail.Authenticator() {
+                    @Override
                     protected PasswordAuthentication getPasswordAuthentication() {
                         return new PasswordAuthentication(userName, password);
                     }
@@ -102,8 +103,7 @@ public class EmailServiceImpl implements EmailServiceInterface {
 
     private Timestamp getCurrentTime(){
         java.util.Date date = new java.util.Date();
-        Timestamp timestamp = new Timestamp(date.getTime());
-        return timestamp;
+        return new Timestamp(date.getTime());
     }
 
 

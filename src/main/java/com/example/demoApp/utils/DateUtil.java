@@ -1,8 +1,7 @@
-package com.example.demoApp.utils;
+package com.example.demoapp.utils;
 
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
@@ -18,14 +17,13 @@ public class DateUtil {
     public boolean checkValidityUrl(Timestamp timestamp1){
 
         Timestamp timestamp2 = getCurrentTime();
-        long milliseconds = timestamp2.getTime() - timestamp1.getTime();
-        int seconds = (int) milliseconds / 1000;
+        long secs = (timestamp2.getTime() -timestamp1.getTime()) / 1000;
+        long hours = secs / 3600;
+        boolean urlNotValid = false;
+        if(hours<Long.parseLong(numberOfHours))
+            urlNotValid = true;
 
-        int hours = seconds / 3600;
-        if(hours<Integer.parseInt(numberOfHours))
-            return true;
-        else
-            return false;
+        return urlNotValid;
 
     }
 

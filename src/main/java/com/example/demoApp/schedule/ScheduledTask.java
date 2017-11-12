@@ -1,8 +1,8 @@
-package com.example.demoApp.schedule;
+package com.example.demoapp.schedule;
 
-import com.example.demoApp.mvc.entity.Link;
-import com.example.demoApp.mvc.repository.LinkRepository;
-import com.example.demoApp.utils.DateUtil;
+import com.example.demoapp.mvc.entity.Link;
+import com.example.demoapp.mvc.repository.LinkRepository;
+import com.example.demoapp.utils.DateUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;

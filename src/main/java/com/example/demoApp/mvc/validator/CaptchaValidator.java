@@ -1,4 +1,4 @@
-package com.example.demoApp.mvc.validator;
+package com.example.demoapp.mvc.validator;
 
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,7 +17,7 @@ import java.net.URL;
 @Component
 public class CaptchaValidator {
 
-    private final static String USER_AGENT = "USER_AGENT";
+    private static final String USER_AGENT = "USER_AGENT";
 
     @Value("${recaptcha.url}")
     private String url;
@@ -36,7 +36,7 @@ public class CaptchaValidator {
             String postParams = "secret=" + secretKey + "&response="
                     + gRecaptchaResponse;
             sendPostRequest(con ,postParams);
-            StringBuffer response = getResponse(con);
+            StringBuilder response = getResponse(con);
             JsonObject jsonObject = parseJsonResponse(response);
             return jsonObject.getBoolean("success");
         }catch(Exception e){
@@ -44,12 +44,12 @@ public class CaptchaValidator {
         }
     }
 
-    private StringBuffer getResponse(HttpsURLConnection con) throws IOException {
+    private StringBuilder getResponse(HttpsURLConnection con) throws IOException {
 
         BufferedReader in = new BufferedReader(new InputStreamReader(
                 con.getInputStream()));
         String inputLine;
-        StringBuffer response = new StringBuffer();
+        StringBuilder response = new StringBuilder();
 
         while ((inputLine = in.readLine()) != null) {
             response.append(inputLine);
@@ -58,7 +58,7 @@ public class CaptchaValidator {
         return response;
     }
 
-    private JsonObject parseJsonResponse(StringBuffer response) {
+    private JsonObject parseJsonResponse(StringBuilder response) {
         JsonReader jsonReader = Json.createReader(new StringReader(response.toString()));
         JsonObject jsonObject = jsonReader.readObject();
         jsonReader.close();

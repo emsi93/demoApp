@@ -1,6 +1,6 @@
 package test;
 
-import com.example.demoApp.mvc.validator.EmailAddressValidator;
+import com.example.demoapp.mvc.validator.EmailAddressValidator;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;

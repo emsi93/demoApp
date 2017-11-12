@@ -1,8 +1,8 @@
-package com.example.demoApp.mvc.service;
+package com.example.demoapp.mvc.service;
 
-import com.example.demoApp.mvc.form.EmailForm;
-import com.example.demoApp.mvc.form.PasswordsForm;
-import com.example.demoApp.utils.ModelAndViewUtils;
+import com.example.demoapp.mvc.form.EmailForm;
+import com.example.demoapp.mvc.form.PasswordsForm;
+import com.example.demoapp.utils.ModelAndViewUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -14,17 +14,17 @@ import java.security.NoSuchAlgorithmException;
 
 public interface ResetPasswordServiceInterface {
 
-    public ModelAndViewUtils emailFormGet(HttpServletRequest request,
+    ModelAndViewUtils emailFormGet(HttpServletRequest request,
                                                HttpServletResponse response, EmailForm emailOrNull, Integer message);
 
-    public ModelAndViewUtils emailFormPost(HttpServletRequest request,
+    ModelAndViewUtils emailFormPost(HttpServletRequest request,
                                            HttpServletResponse response, @ModelAttribute("emailForm") @Validated EmailForm email,
                                            BindingResult result);
 
-    public ModelAndViewUtils resetPasswordGet(HttpServletRequest request,
+    ModelAndViewUtils resetPasswordGet(HttpServletRequest request,
                                               HttpServletResponse response, PasswordsForm passwordsForm, Integer messageCode);
 
-    public ModelAndViewUtils resetPasswordPost(HttpServletRequest request,
+    ModelAndViewUtils resetPasswordPost(HttpServletRequest request,
                                                HttpServletResponse response, @ModelAttribute("passwordsForm") @Validated PasswordsForm passwordsForm,
                                                BindingResult result) throws NoSuchAlgorithmException, IOException;
 }

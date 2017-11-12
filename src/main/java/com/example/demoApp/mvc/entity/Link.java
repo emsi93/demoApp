@@ -1,4 +1,4 @@
-package com.example.demoApp.mvc.entity;
+package com.example.demoapp.mvc.entity;
 
 import lombok.Data;
 

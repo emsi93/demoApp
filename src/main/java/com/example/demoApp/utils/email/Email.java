@@ -1,4 +1,4 @@
-package com.example.demoApp.utils.email;
+package com.example.demoapp.utils.email;
 
 import lombok.Data;
 

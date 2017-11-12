@@ -1,6 +1,6 @@
-package com.example.demoApp.configuration;
+package com.example.demoapp.configuration;
 
-import com.example.demoApp.utils.PasswordEncoderUtil;
+import com.example.demoapp.utils.PasswordEncoderUtil;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -55,7 +55,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
-                .antMatchers( "/main/*", "/password/*", "/activeUser/*", "/security/logIn").permitAll()
+                .antMatchers("/webjars/*", "/main/*", "/password/*", "/activeUser/*", "/security/logIn").permitAll()
                 .antMatchers("/app/home").hasAuthority("ROLE_ADMIN").anyRequest()
                 .authenticated().and().formLogin()
                 .loginPage("/security/logIn").failureUrl("/error/failureLogin").failureForwardUrl("/error/failureLogin")
