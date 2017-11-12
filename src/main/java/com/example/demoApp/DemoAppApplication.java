@@ -1,4 +1,4 @@
-package com.example.demoApp;
+package com.example.demoapp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -8,11 +8,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
-@EnableJpaRepositories("com.example.demoApp.mvc.repository")
+@EnableJpaRepositories("com.example.demoapp.mvc.repository")
 @Configuration
 @EnableAutoConfiguration
-@ComponentScan({"com.example.demoApp"})
-@EntityScan("com.example.demoApp.mvc.entity")
+@ComponentScan({"com.example.demoapp"})
+@EntityScan("com.example.demoapp.mvc.entity")
 @EnableScheduling
 public class DemoAppApplication {
 

@@ -1,8 +1,8 @@
-package com.example.demoApp.mvc.validator;
+package com.example.demoapp.mvc.validator;
 
-import com.example.demoApp.mvc.form.UserForm;
-import com.example.demoApp.mvc.repository.UserRepository;
-import com.example.demoApp.utils.ValidationUtil;
+import com.example.demoapp.mvc.form.UserForm;
+import com.example.demoapp.mvc.repository.UserRepository;
+import com.example.demoapp.utils.ValidationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.stereotype.Component;
@@ -12,6 +12,8 @@ import org.springframework.validation.Validator;
 
 @Component
 public class UserFormValidator implements Validator {
+
+    private static final String VALIDATOR_OBLIGATORY_FIELD = "validator.obligatory.field";
 
     @Autowired
     private MessageSourceAccessor messageSourceAccessor;
@@ -32,16 +34,16 @@ public class UserFormValidator implements Validator {
         UserForm user = (UserForm) o;
 
         ValidationUtil.rejectIfEmpty(errors, "login",
-                messageSourceAccessor.getMessage("validator.obligatory.field"));
+                messageSourceAccessor.getMessage(VALIDATOR_OBLIGATORY_FIELD));
 
         ValidationUtil.rejectIfEmpty(errors, "email",
-                messageSourceAccessor.getMessage("validator.obligatory.field"));
+                messageSourceAccessor.getMessage(VALIDATOR_OBLIGATORY_FIELD));
 
         ValidationUtil.rejectIfEmpty(errors, "password",
-                messageSourceAccessor.getMessage("validator.obligatory.field"));
+                messageSourceAccessor.getMessage(VALIDATOR_OBLIGATORY_FIELD));
 
         ValidationUtil.rejectIfEmpty(errors, "password2",
-                messageSourceAccessor.getMessage("validator.obligatory.field"));
+                messageSourceAccessor.getMessage(VALIDATOR_OBLIGATORY_FIELD));
 
 
         Long countByLogin = userRepository.countByLogin(user.getEmail());

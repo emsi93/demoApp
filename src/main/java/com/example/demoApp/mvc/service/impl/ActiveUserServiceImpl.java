@@ -1,16 +1,15 @@
-package com.example.demoApp.mvc.service.impl;
+package com.example.demoapp.mvc.service.impl;
 
-import com.example.demoApp.configuration.Config;
-import com.example.demoApp.configuration.constants.JspViews;
-import com.example.demoApp.mvc.controller.ErrorController;
-import com.example.demoApp.mvc.controller.SecurityController;
-import com.example.demoApp.mvc.entity.Link;
-import com.example.demoApp.mvc.entity.User;
-import com.example.demoApp.mvc.repository.LinkRepository;
-import com.example.demoApp.mvc.repository.UserRepository;
-import com.example.demoApp.mvc.service.ActiveUserServiceInterface;
-import com.example.demoApp.utils.DateUtil;
-import com.example.demoApp.utils.ModelAndViewUtils;
+import com.example.demoapp.configuration.Config;
+import com.example.demoapp.mvc.controller.ErrorController;
+import com.example.demoapp.mvc.controller.SecurityController;
+import com.example.demoapp.mvc.entity.Link;
+import com.example.demoapp.mvc.entity.User;
+import com.example.demoapp.mvc.repository.LinkRepository;
+import com.example.demoapp.mvc.repository.UserRepository;
+import com.example.demoapp.mvc.service.ActiveUserServiceInterface;
+import com.example.demoapp.utils.DateUtil;
+import com.example.demoapp.utils.ModelAndViewUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +24,8 @@ import java.util.Optional;
 @Transactional
 @Slf4j
 public class ActiveUserServiceImpl implements ActiveUserServiceInterface {
+
+    private static final String TYPE_LINK = "ACTIVATION";
 
     @Autowired
     private SecurityController securityController;
@@ -43,14 +44,13 @@ public class ActiveUserServiceImpl implements ActiveUserServiceInterface {
 
     @Override
     public ModelAndViewUtils activeUser(HttpServletRequest request, HttpServletResponse response) {
-        ModelAndViewUtils modelAndView = new ModelAndViewUtils(request, JspViews.ERROR_LINK_ACTIVE_VIEW);
         String token = request.getParameter(Config.TOKEN_PARAM);
         String email = getEmailFromToken(request, token);
         if (email == null) {
             return errorController.errorLinkActive(request, response);
         } else {
             activeUser(email);
-            linkRepository.deleteByEmailAndType(email,"ACTIVATION");
+            linkRepository.deleteByEmailAndType(email, TYPE_LINK);
             return securityController.login(request, response, 1);
         }
 
@@ -66,8 +66,8 @@ public class ActiveUserServiceImpl implements ActiveUserServiceInterface {
         if (token != null) {
             String url = request.getRequestURL().toString() + "?" + Config.TOKEN_PARAM + "=" + token;
             long countByLink = linkRepository.countByLink(url);
-            Link link = Optional.ofNullable(linkRepository.findByLinkAndType(url, "ACTIVATION")).orElse(new Link(null, null, null, null));
-            if(validateLink(link,countByLink)){
+            Link link = Optional.ofNullable(linkRepository.findByLinkAndType(url, TYPE_LINK)).orElse(new Link(null, null, null, null));
+            if (validateLink(link, countByLink)) {
                 return link.getEmail();
             } else
                 return null;
@@ -76,18 +76,17 @@ public class ActiveUserServiceImpl implements ActiveUserServiceInterface {
         return null;
     }
 
-    private boolean validateLink(Link link, long countByLink){
+    private boolean validateLink(Link link, long countByLink) {
         String email = link.getEmail();
         if (email == null)
             return false;
         Timestamp timestamp = link.getData();
         if (!dateUtil.checkValidityUrl(timestamp))
             return false;
-        long countByEmailAndType = linkRepository.countByEmailAndType(email, "ACTIVATION");
+        long countByEmailAndType = linkRepository.countByEmailAndType(email, TYPE_LINK);
+        boolean isValidLink = true;
         if (countByEmailAndType != 1 || countByLink != 1)
-            return false;
-        else {
-            return true;
-        }
+            isValidLink = false;
+        return isValidLink;
     }
 }

@@ -1,4 +1,4 @@
-package com.example.demoApp.utils;
+package com.example.demoapp.utils;
 
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,7 +23,7 @@ public class PasswordEncoderUtil implements PasswordEncoder {
         md.update(password.getBytes());
 
         byte byteData[] = md.digest();
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < byteData.length; i++) {
             sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
         }
@@ -44,16 +44,16 @@ public class PasswordEncoderUtil implements PasswordEncoder {
     @Override
     public boolean matches(CharSequence charSequence, String encodedDbPassword) {
         String plainText = charSequence.toString();
-        String encodePassword = null;
+        String encodePassword = "";
         try {
             encodePassword = encode(plainText);
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
 
+        boolean validPassword = false;
         if (encodePassword.equals(encodedDbPassword))
-            return true;
-        else
-            return false;
+            validPassword = true;
+        return validPassword;
     }
 }

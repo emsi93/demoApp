@@ -1,4 +1,4 @@
-package com.example.demoApp.mvc.form;
+package com.example.demoapp.mvc.form;
 
 import lombok.Data;
 

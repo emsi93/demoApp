@@ -1,12 +1,12 @@
-package com.example.demoApp.mvc.controller;
+package com.example.demoapp.mvc.controller;
 
 
-import com.example.demoApp.mvc.form.EmailForm;
-import com.example.demoApp.mvc.form.PasswordsForm;
-import com.example.demoApp.mvc.service.ResetPasswordServiceInterface;
-import com.example.demoApp.mvc.validator.EmailAddressValidator;
-import com.example.demoApp.mvc.validator.PasswordsFormValidator;
-import com.example.demoApp.utils.ModelAndViewUtils;
+import com.example.demoapp.mvc.form.EmailForm;
+import com.example.demoapp.mvc.form.PasswordsForm;
+import com.example.demoapp.mvc.service.ResetPasswordServiceInterface;
+import com.example.demoapp.mvc.validator.EmailAddressValidator;
+import com.example.demoapp.mvc.validator.PasswordsFormValidator;
+import com.example.demoapp.utils.ModelAndViewUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

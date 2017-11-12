@@ -1,17 +1,16 @@
-package com.example.demoApp.utils.email;
+package com.example.demoapp.utils.email;
 
-import com.example.demoApp.configuration.Config;
-import com.example.demoApp.utils.TokenUtil;
+import com.example.demoapp.configuration.Config;
+import com.example.demoapp.utils.TokenUtil;
 
 public class EmailResetPassword extends Email {
 
-    private final static String MAPPING = "/password/resetPassword?";
-    private final static String TOPIC = "Reset password";
-    private final static String RESET_LINK_TYPE = "RESET";
+    private static final String MAPPING = "/password/resetPassword?";
+    private static final String RESET_LINK_TYPE = "RESET";
 
     public EmailResetPassword(String emailAddress, String host){
         url = host + MAPPING + Config.TOKEN_PARAM + "=" + TokenUtil.generateToken();
-        topic = TOPIC;
+        topic = "Reset password";
         recipient = emailAddress;
         type = RESET_LINK_TYPE;
     }

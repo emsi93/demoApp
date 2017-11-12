@@ -1,6 +1,6 @@
 package test;
 
-import com.example.demoApp.mvc.validator.PasswordValidator;
+import com.example.demoapp.mvc.validator.PasswordValidator;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;

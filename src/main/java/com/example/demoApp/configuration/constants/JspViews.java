@@ -1,4 +1,4 @@
-package com.example.demoApp.configuration.constants;
+package com.example.demoapp.configuration.constants;
 
 public class JspViews {
 

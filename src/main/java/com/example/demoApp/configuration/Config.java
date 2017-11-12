@@ -1,10 +1,9 @@
-package com.example.demoApp.configuration;
+package com.example.demoapp.configuration;
 
 public class Config {
 
-    public final static String RECAPTCHA_PARAM = "g-recaptcha-response";
-    public final static String RECAPTCHA_URL_PL = "https://www.google.com/recaptcha/api.js?hl=pl";
-    public final static String RECAPTCHA_URL_EN = "https://www.google.com/recaptcha/api.js?hl=EN";
-
-    public final static String TOKEN_PARAM = "token";
+    public static final String RECAPTCHA_PARAM = "g-recaptcha-response";
+    public static final String RECAPTCHA_URL_PL = "https://www.google.com/recaptcha/api.js?hl=pl";
+    public static final String RECAPTCHA_URL_EN = "https://www.google.com/recaptcha/api.js?hl=EN";
+    public static final String TOKEN_PARAM = "token";
 }

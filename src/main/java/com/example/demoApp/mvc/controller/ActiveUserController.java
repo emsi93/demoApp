@@ -1,7 +1,7 @@
-package com.example.demoApp.mvc.controller;
+package com.example.demoapp.mvc.controller;
 
-import com.example.demoApp.mvc.service.ActiveUserServiceInterface;
-import com.example.demoApp.utils.ModelAndViewUtils;
+import com.example.demoapp.mvc.service.ActiveUserServiceInterface;
+import com.example.demoapp.utils.ModelAndViewUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

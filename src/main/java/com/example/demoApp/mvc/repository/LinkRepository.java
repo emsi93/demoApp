@@ -1,20 +1,20 @@
-package com.example.demoApp.mvc.repository;
+package com.example.demoapp.mvc.repository;
 
-import com.example.demoApp.mvc.entity.Link;
+import com.example.demoapp.mvc.entity.Link;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public interface LinkRepository extends JpaRepository<Link, Integer> {
-    public long countByLink(String link);
+    long countByLink(String link);
 
-    public long countByEmailAndType(String email, String type);
+    long countByEmailAndType(String email, String type);
 
-    public Link findByLink(String link);
+    Link findByLink(String link);
 
-    public Link findByLinkAndType(String link, String type);
+    Link findByLinkAndType(String link, String type);
 
-    public Link findByEmailAndType(String email, String type);
+    Link findByEmailAndType(String email, String type);
 
-    public void deleteByEmailAndType(String email, String type);
+    void deleteByEmailAndType(String email, String type);
 }

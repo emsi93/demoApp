@@ -1,11 +1,12 @@
 package test;
 
-import com.example.demoApp.utils.DateUtil;
-import org.junit.Assert;
+import com.example.demoapp.utils.DateUtil;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
+
 import java.sql.Timestamp;
+
+import static org.junit.Assert.assertEquals;
 
 public class DateUtilTest {
 

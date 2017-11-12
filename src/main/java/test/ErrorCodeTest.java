@@ -1,6 +1,6 @@
 package test;
 
-import com.example.demoApp.utils.ErrorCode;
+import com.example.demoapp.utils.ErrorCode;
 import static org.junit.Assert.*;
 import org.junit.Test;
 

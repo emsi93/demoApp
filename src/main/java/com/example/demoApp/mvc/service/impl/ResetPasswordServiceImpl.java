@@ -1,23 +1,23 @@
-package com.example.demoApp.mvc.service.impl;
+package com.example.demoapp.mvc.service.impl;
 
-import com.example.demoApp.configuration.CaptchaConfig;
-import com.example.demoApp.configuration.Config;
-import com.example.demoApp.configuration.constants.JspViews;
-import com.example.demoApp.mvc.controller.ErrorController;
-import com.example.demoApp.mvc.controller.SecurityController;
-import com.example.demoApp.mvc.entity.Link;
-import com.example.demoApp.mvc.entity.User;
-import com.example.demoApp.mvc.form.EmailForm;
-import com.example.demoApp.mvc.form.PasswordsForm;
-import com.example.demoApp.mvc.repository.LinkRepository;
-import com.example.demoApp.mvc.repository.UserRepository;
-import com.example.demoApp.mvc.service.EmailServiceInterface;
-import com.example.demoApp.mvc.service.ResetPasswordServiceInterface;
-import com.example.demoApp.mvc.validator.CaptchaValidator;
-import com.example.demoApp.utils.DateUtil;
-import com.example.demoApp.utils.ModelAndViewUtils;
-import com.example.demoApp.utils.PasswordEncoderUtil;
-import com.example.demoApp.utils.email.EmailResetPassword;
+import com.example.demoapp.configuration.CaptchaConfig;
+import com.example.demoapp.configuration.Config;
+import com.example.demoapp.configuration.constants.JspViews;
+import com.example.demoapp.mvc.controller.ErrorController;
+import com.example.demoapp.mvc.controller.SecurityController;
+import com.example.demoapp.mvc.entity.Link;
+import com.example.demoapp.mvc.entity.User;
+import com.example.demoapp.mvc.form.EmailForm;
+import com.example.demoapp.mvc.form.PasswordsForm;
+import com.example.demoapp.mvc.repository.LinkRepository;
+import com.example.demoapp.mvc.repository.UserRepository;
+import com.example.demoapp.mvc.service.EmailServiceInterface;
+import com.example.demoapp.mvc.service.ResetPasswordServiceInterface;
+import com.example.demoapp.mvc.validator.CaptchaValidator;
+import com.example.demoapp.utils.DateUtil;
+import com.example.demoapp.utils.ModelAndViewUtils;
+import com.example.demoapp.utils.PasswordEncoderUtil;
+import com.example.demoapp.utils.email.EmailResetPassword;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -38,6 +38,8 @@ import java.util.Optional;
 @Transactional
 @ConfigurationProperties(prefix="application")
 public class ResetPasswordServiceImpl implements ResetPasswordServiceInterface {
+
+    private static final String TYPE_LINK = "RESET";
 
     @Value("${host}")
     private String host;
@@ -115,14 +117,14 @@ public class ResetPasswordServiceImpl implements ResetPasswordServiceInterface {
         if (token != null) {
             String url = request.getRequestURL().toString() + "?" + Config.TOKEN_PARAM + "=" + token;
             long countByLink = linkRepository.countByLink(url);
-            Link link = Optional.ofNullable(linkRepository.findByLinkAndType(url, "RESET")).orElse(new Link(null, null, null, null));
+            Link link = Optional.ofNullable(linkRepository.findByLinkAndType(url, TYPE_LINK)).orElse(new Link(null, null, null, null));
             String email = link.getEmail();
             if (email == null)
                 return 3;
             Timestamp timestamp = link.getData();
             if(!dateUtil.checkValidityUrl(timestamp))
                 return 3;
-            long countByEmailAndType = linkRepository.countByEmailAndType(email, "RESET");
+            long countByEmailAndType = linkRepository.countByEmailAndType(email, TYPE_LINK);
             if (countByEmailAndType != 1 || countByLink != 1)
                 return 3;
             else

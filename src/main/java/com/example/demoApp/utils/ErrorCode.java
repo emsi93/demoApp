@@ -1,24 +1,24 @@
-package com.example.demoApp.utils;
+package com.example.demoapp.utils;
 
 import java.util.Random;
 
 public class ErrorCode {
 
-    private final static String LETTERS_AND_NUMBERS="0123456789ABCDEFGHJKMNOPRSTUWXYZ";
+    private static final String LETTERS_AND_NUMBERS="0123456789ABCDEFGHJKMNOPRSTUWXYZ";
 
-    private static Random rn = new Random();
-    private static int max = LETTERS_AND_NUMBERS.length()-1;
-    private static int min = 0;
+    private static final Random RN = new Random();
+    private static final int MAX = LETTERS_AND_NUMBERS.length()-1;
+    private static final int MIN = 0;
 
     public static String generate(){
 
-        String errorCode="";
+        StringBuilder errorCode = new StringBuilder();
         int index;
         for(int i=0; i<6; i++)
         {
-            index = rn.nextInt(max - min + 1) + min;
-            errorCode = errorCode + LETTERS_AND_NUMBERS.charAt(index);
+            index = RN.nextInt(MAX - MIN + 1) + MIN;
+            errorCode = new StringBuilder(errorCode.toString() + LETTERS_AND_NUMBERS.charAt(index) );
         }
-        return errorCode;
+        return errorCode.toString();
     }
 }
