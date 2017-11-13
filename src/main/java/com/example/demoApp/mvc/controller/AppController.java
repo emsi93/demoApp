@@ -1,7 +1,7 @@
 package com.example.demoapp.mvc.controller;
 
 import com.example.demoapp.configuration.constants.JspViews;
-import com.example.demoapp.utils.ModelAndViewUtils;
+import com.example.demoapp.utils.ModelAndViewUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 public class AppController {
 
     @RequestMapping("/home")
-    public ModelAndViewUtils home(HttpServletRequest request, HttpServletResponse response) {
-       return  ModelAndViewUtils.createModelAndViewWithUserName(request,JspViews.HOME_VIEW);
+    public ModelAndViewUtil home(HttpServletRequest request, HttpServletResponse response) {
+       return  ModelAndViewUtil.createModelAndViewWithUserName(request,JspViews.HOME_VIEW);
     }
 }

@@ -9,7 +9,7 @@ import com.example.demoapp.mvc.repository.LinkRepository;
 import com.example.demoapp.mvc.repository.UserRepository;
 import com.example.demoapp.mvc.service.ActiveUserServiceInterface;
 import com.example.demoapp.utils.DateUtil;
-import com.example.demoapp.utils.ModelAndViewUtils;
+import com.example.demoapp.utils.ModelAndViewUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,7 +43,7 @@ public class ActiveUserServiceImpl implements ActiveUserServiceInterface {
     private DateUtil dateUtil;
 
     @Override
-    public ModelAndViewUtils activeUser(HttpServletRequest request, HttpServletResponse response) {
+    public ModelAndViewUtil activeUser(HttpServletRequest request, HttpServletResponse response) {
         String token = request.getParameter(Config.TOKEN_PARAM);
         String email = getEmailFromToken(request, token);
         if (email == null) {

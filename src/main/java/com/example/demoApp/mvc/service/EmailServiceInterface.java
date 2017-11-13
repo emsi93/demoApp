@@ -1,6 +1,6 @@
 package com.example.demoapp.mvc.service;
 
-import com.example.demoapp.utils.email.Email;
+import com.example.demoapp.email.Email;
 
 public interface EmailServiceInterface {
 

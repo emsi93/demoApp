@@ -8,15 +8,15 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
-public class ModelAndViewUtils extends ModelAndView {
+public class ModelAndViewUtil extends ModelAndView {
 
-    public ModelAndViewUtils(HttpServletRequest request, String jspName) {
+    public ModelAndViewUtil(HttpServletRequest request, String jspName) {
         super(jspName);
         addObject("recaptchaUrl", returnRecaptchaUrl(request));
     }
 
-    public static ModelAndViewUtils createModelAndViewWithUserName(HttpServletRequest request, String jspName){
-        ModelAndViewUtils modelAndView = new ModelAndViewUtils(request,jspName);
+    public static ModelAndViewUtil createModelAndViewWithUserName(HttpServletRequest request, String jspName){
+        ModelAndViewUtil modelAndView = new ModelAndViewUtil(request,jspName);
         Authentication auth = SecurityContextHolder.getContext()
                 .getAuthentication();
         String userName = auth.getName();

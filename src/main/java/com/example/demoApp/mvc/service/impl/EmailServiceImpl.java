@@ -4,7 +4,7 @@ import com.example.demoapp.mvc.entity.Link;
 import com.example.demoapp.mvc.repository.LinkRepository;
 import com.example.demoapp.mvc.service.EmailServiceInterface;
 import com.example.demoapp.utils.ErrorCode;
-import com.example.demoapp.utils.email.Email;
+import com.example.demoapp.email.Email;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

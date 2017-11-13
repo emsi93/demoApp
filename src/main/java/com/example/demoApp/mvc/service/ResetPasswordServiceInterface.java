@@ -2,7 +2,7 @@ package com.example.demoapp.mvc.service;
 
 import com.example.demoapp.mvc.form.EmailForm;
 import com.example.demoapp.mvc.form.PasswordsForm;
-import com.example.demoapp.utils.ModelAndViewUtils;
+import com.example.demoapp.utils.ModelAndViewUtil;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -14,17 +14,17 @@ import java.security.NoSuchAlgorithmException;
 
 public interface ResetPasswordServiceInterface {
 
-    ModelAndViewUtils emailFormGet(HttpServletRequest request,
-                                               HttpServletResponse response, EmailForm emailOrNull, Integer message);
+    ModelAndViewUtil emailFormGet(HttpServletRequest request,
+                                  HttpServletResponse response, EmailForm emailOrNull, Integer message);
 
-    ModelAndViewUtils emailFormPost(HttpServletRequest request,
-                                           HttpServletResponse response, @ModelAttribute("emailForm") @Validated EmailForm email,
-                                           BindingResult result);
+    ModelAndViewUtil emailFormPost(HttpServletRequest request,
+                                   HttpServletResponse response, @ModelAttribute("emailForm") @Validated EmailForm email,
+                                   BindingResult result);
 
-    ModelAndViewUtils resetPasswordGet(HttpServletRequest request,
-                                              HttpServletResponse response, PasswordsForm passwordsForm, Integer messageCode);
+    ModelAndViewUtil resetPasswordGet(HttpServletRequest request,
+                                      HttpServletResponse response, PasswordsForm passwordsForm, Integer messageCode);
 
-    ModelAndViewUtils resetPasswordPost(HttpServletRequest request,
-                                               HttpServletResponse response, @ModelAttribute("passwordsForm") @Validated PasswordsForm passwordsForm,
-                                               BindingResult result) throws NoSuchAlgorithmException, IOException;
+    ModelAndViewUtil resetPasswordPost(HttpServletRequest request,
+                                       HttpServletResponse response, @ModelAttribute("passwordsForm") @Validated PasswordsForm passwordsForm,
+                                       BindingResult result) throws NoSuchAlgorithmException, IOException;
 }

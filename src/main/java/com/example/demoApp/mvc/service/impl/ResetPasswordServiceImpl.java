@@ -15,9 +15,9 @@ import com.example.demoapp.mvc.service.EmailServiceInterface;
 import com.example.demoapp.mvc.service.ResetPasswordServiceInterface;
 import com.example.demoapp.mvc.validator.CaptchaValidator;
 import com.example.demoapp.utils.DateUtil;
-import com.example.demoapp.utils.ModelAndViewUtils;
+import com.example.demoapp.utils.ModelAndViewUtil;
 import com.example.demoapp.utils.PasswordEncoderUtil;
-import com.example.demoapp.utils.email.EmailResetPassword;
+import com.example.demoapp.email.EmailResetPassword;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -72,15 +72,15 @@ public class ResetPasswordServiceImpl implements ResetPasswordServiceInterface {
     private DateUtil dateUtil;
 
     @Override
-    public ModelAndViewUtils emailFormGet(HttpServletRequest request, HttpServletResponse response, EmailForm emailOrNull, Integer messageCodeOrNull) {
-        ModelAndViewUtils modelAndView = new ModelAndViewUtils(request, JspViews.EMAIL_FORM);
+    public ModelAndViewUtil emailFormGet(HttpServletRequest request, HttpServletResponse response, EmailForm emailOrNull, Integer messageCodeOrNull) {
+        ModelAndViewUtil modelAndView = new ModelAndViewUtil(request, JspViews.EMAIL_FORM);
         modelAndView.addObject("messageCode", messageCodeOrNull);
         modelAndView.addObject("emailForm", emailOrNull);
         return modelAndView;
     }
 
     @Override
-    public ModelAndViewUtils emailFormPost(HttpServletRequest request, HttpServletResponse response, EmailForm emailform, BindingResult result) {
+    public ModelAndViewUtil emailFormPost(HttpServletRequest request, HttpServletResponse response, EmailForm emailform, BindingResult result) {
         if (result.hasErrors()) {
             return emailFormGet(request, response, emailform, 1);
         } else {
@@ -90,8 +90,8 @@ public class ResetPasswordServiceImpl implements ResetPasswordServiceInterface {
     }
 
     @Override
-    public ModelAndViewUtils resetPasswordGet(HttpServletRequest request, HttpServletResponse response, PasswordsForm passwordsForm, Integer messageCodeOrNull) {
-        ModelAndViewUtils modelAndView = new ModelAndViewUtils(request, JspViews.RESET_PASSWORD_VIEW);
+    public ModelAndViewUtil resetPasswordGet(HttpServletRequest request, HttpServletResponse response, PasswordsForm passwordsForm, Integer messageCodeOrNull) {
+        ModelAndViewUtil modelAndView = new ModelAndViewUtil(request, JspViews.RESET_PASSWORD_VIEW);
         String token = request.getParameter(Config.TOKEN_PARAM);
         if(gerErrorUrlCode(request, token) == 3)
             return errorController.errorLinkReset(request,response);
@@ -103,7 +103,7 @@ public class ResetPasswordServiceImpl implements ResetPasswordServiceInterface {
     }
 
     @Override
-    public ModelAndViewUtils resetPasswordPost(HttpServletRequest request, HttpServletResponse response, PasswordsForm passwordsForm, BindingResult result) throws NoSuchAlgorithmException, IOException {
+    public ModelAndViewUtil resetPasswordPost(HttpServletRequest request, HttpServletResponse response, PasswordsForm passwordsForm, BindingResult result) throws NoSuchAlgorithmException, IOException {
         boolean validCaptcha = captchaValidator.verify(request.getParameter(Config.RECAPTCHA_PARAM));
         if (result.hasErrors() || !validCaptcha) {
             return resetPasswordGet(request, response, passwordsForm, 1);
