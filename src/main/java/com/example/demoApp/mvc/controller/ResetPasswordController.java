@@ -6,7 +6,7 @@ import com.example.demoapp.mvc.form.PasswordsForm;
 import com.example.demoapp.mvc.service.ResetPasswordServiceInterface;
 import com.example.demoapp.mvc.validator.EmailAddressValidator;
 import com.example.demoapp.mvc.validator.PasswordsFormValidator;
-import com.example.demoapp.utils.ModelAndViewUtils;
+import com.example.demoapp.utils.ModelAndViewUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -48,28 +48,28 @@ public class ResetPasswordController {
     }
 
     @RequestMapping(value = "emailForm", method = RequestMethod.GET)
-    public ModelAndViewUtils emailFormGet(HttpServletRequest request,
-                                          HttpServletResponse response, EmailForm emailOrNull, Integer message) {
+    public ModelAndViewUtil emailFormGet(HttpServletRequest request,
+                                         HttpServletResponse response, EmailForm emailOrNull, Integer message) {
         return resetPasswordServiceInterface.emailFormGet(request, response, emailOrNull, message);
     }
 
     @RequestMapping(value = "emailForm", method = RequestMethod.POST)
-    public ModelAndViewUtils emailFormPost(HttpServletRequest request,
-                                           HttpServletResponse response, @ModelAttribute("emailForm") @Validated EmailForm email,
-                                           BindingResult result) {
+    public ModelAndViewUtil emailFormPost(HttpServletRequest request,
+                                          HttpServletResponse response, @ModelAttribute("emailForm") @Validated EmailForm email,
+                                          BindingResult result) {
         return resetPasswordServiceInterface.emailFormPost(request, response, email, result);
     }
 
     @RequestMapping(value = "resetPassword", method = RequestMethod.GET)
-    public ModelAndViewUtils resetPasswordGet(HttpServletRequest request,
-                                              HttpServletResponse response, PasswordsForm passwordsForm, Integer messageCode) {
+    public ModelAndViewUtil resetPasswordGet(HttpServletRequest request,
+                                             HttpServletResponse response, PasswordsForm passwordsForm, Integer messageCode) {
         return resetPasswordServiceInterface.resetPasswordGet(request, response, passwordsForm, messageCode);
     }
 
     @RequestMapping(value = "resetPassword", method = RequestMethod.POST)
-    public ModelAndViewUtils resetPasswordPost(HttpServletRequest request,
-                                               HttpServletResponse response, @ModelAttribute("passwordsForm") @Validated PasswordsForm passwordsForm,
-                                               BindingResult result) throws NoSuchAlgorithmException, IOException {
+    public ModelAndViewUtil resetPasswordPost(HttpServletRequest request,
+                                              HttpServletResponse response, @ModelAttribute("passwordsForm") @Validated PasswordsForm passwordsForm,
+                                              BindingResult result) throws NoSuchAlgorithmException, IOException {
         return resetPasswordServiceInterface.resetPasswordPost(request, response, passwordsForm, result);
     }
 }

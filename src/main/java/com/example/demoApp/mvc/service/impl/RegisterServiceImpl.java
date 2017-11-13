@@ -10,9 +10,9 @@ import com.example.demoapp.mvc.repository.UserRepository;
 import com.example.demoapp.mvc.service.EmailServiceInterface;
 import com.example.demoapp.mvc.service.RegisterServiceInterface;
 import com.example.demoapp.mvc.validator.CaptchaValidator;
-import com.example.demoapp.utils.ModelAndViewUtils;
+import com.example.demoapp.utils.ModelAndViewUtil;
 import com.example.demoapp.utils.PasswordEncoderUtil;
-import com.example.demoapp.utils.email.EmailActivation;
+import com.example.demoapp.email.EmailActivation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -51,8 +51,8 @@ public class RegisterServiceImpl implements RegisterServiceInterface {
     private EmailServiceInterface emailServiceInterface;
 
     @Override
-    public ModelAndViewUtils registerGet(HttpServletRequest request, HttpServletResponse response, UserForm userOrNull, Integer messageCodeOrNull) {
-        ModelAndViewUtils modelAndView = new ModelAndViewUtils(request,JspViews.REGISTER_VIEW);
+    public ModelAndViewUtil registerGet(HttpServletRequest request, HttpServletResponse response, UserForm userOrNull, Integer messageCodeOrNull) {
+        ModelAndViewUtil modelAndView = new ModelAndViewUtil(request,JspViews.REGISTER_VIEW);
         modelAndView.addObject("messageCode", messageCodeOrNull);
         modelAndView.addObject("recaptchaSiteKey", captchaConfig.getSiteKey());
         modelAndView.addObject("userForm", userOrNull);
@@ -61,7 +61,7 @@ public class RegisterServiceImpl implements RegisterServiceInterface {
     }
 
     @Override
-    public ModelAndViewUtils registerPost(HttpServletRequest request, HttpServletResponse response, UserForm user, BindingResult result) throws NoSuchAlgorithmException, IOException {
+    public ModelAndViewUtil registerPost(HttpServletRequest request, HttpServletResponse response, UserForm user, BindingResult result) throws NoSuchAlgorithmException, IOException {
         boolean validCaptcha = captchaValidator.verify(request.getParameter(Config.RECAPTCHA_PARAM));
         if (result.hasErrors() || !validCaptcha) {
             return registerGet(request, response, user, 1);

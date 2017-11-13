@@ -4,7 +4,7 @@ package com.example.demoapp.mvc.controller;
 import com.example.demoapp.mvc.form.UserForm;
 import com.example.demoapp.mvc.service.RegisterServiceInterface;
 import com.example.demoapp.mvc.validator.UserFormValidator;
-import com.example.demoapp.utils.ModelAndViewUtils;
+import com.example.demoapp.utils.ModelAndViewUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,15 +38,15 @@ public class RegisterController {
     }
 
     @RequestMapping(value = "signup", method = RequestMethod.GET)
-    public ModelAndViewUtils registerGet(HttpServletRequest request,
-                                         HttpServletResponse response, UserForm userOrNull, Integer messageCodeOrNull) {
+    public ModelAndViewUtil registerGet(HttpServletRequest request,
+                                        HttpServletResponse response, UserForm userOrNull, Integer messageCodeOrNull) {
         return registerServiceInterface.registerGet(request, response, userOrNull, messageCodeOrNull);
     }
 
     @RequestMapping(value = "signup", method = RequestMethod.POST)
-    public ModelAndViewUtils registerPost(HttpServletRequest request,
-                                     HttpServletResponse response, @ModelAttribute("userForm") @Validated UserForm user,
-                                     BindingResult result) throws NoSuchAlgorithmException, IOException {
+    public ModelAndViewUtil registerPost(HttpServletRequest request,
+                                         HttpServletResponse response, @ModelAttribute("userForm") @Validated UserForm user,
+                                         BindingResult result) throws NoSuchAlgorithmException, IOException {
         return registerServiceInterface.registerPost(request, response, user, result);
     }
 }

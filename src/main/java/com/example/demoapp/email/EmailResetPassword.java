@@ -1,4 +1,4 @@
-package com.example.demoapp.utils.email;
+package com.example.demoapp.email;
 
 import com.example.demoapp.configuration.Config;
 import com.example.demoapp.utils.TokenUtil;

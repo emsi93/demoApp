@@ -1,7 +1,7 @@
 package com.example.demoapp.mvc.controller;
 
 import com.example.demoapp.mvc.service.ActiveUserServiceInterface;
-import com.example.demoapp.utils.ModelAndViewUtils;
+import com.example.demoapp.utils.ModelAndViewUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +17,7 @@ public class ActiveUserController {
     private ActiveUserServiceInterface activeUserServiceInterface;
 
     @RequestMapping("/active")
-    public ModelAndViewUtils activeUser(HttpServletRequest request, HttpServletResponse response){
+    public ModelAndViewUtil activeUser(HttpServletRequest request, HttpServletResponse response){
         return activeUserServiceInterface.activeUser(request, response);
     }
 }
