@@ -17,6 +17,7 @@ import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.Properties;
 
@@ -56,7 +57,7 @@ public class EmailServiceImpl implements EmailServiceInterface {
             Message message = buildMessage(session, email);
             Transport.send(message);
             log.info("Sent message successfully to " + email);
-            Link link = new Link(email.getUrl(), email.getRecipient(), getCurrentTime(), email.getType());
+            Link link = new Link(email.getUrl(), email.getRecipient(), LocalDateTime.now(), email.getType());
             saveLink(link);
         } catch (MessagingException e) {
             log.info(ErrorCode.generate() + " Message not sent to " + email);
@@ -67,8 +68,8 @@ public class EmailServiceImpl implements EmailServiceInterface {
 
     private void saveLink(Link link) {
         Link link2 = Optional.ofNullable(linkRepository.findByEmailAndType(link.getEmail(), link.getType()))
-                .orElse(new Link(null,null,null,null));
-        if(link2.getEmail() != null)
+                .orElse(new Link(null, null, null, null));
+        if (link2.getEmail() != null)
             linkRepository.delete(link2);
         linkRepository.save(link);
     }
@@ -99,11 +100,6 @@ public class EmailServiceImpl implements EmailServiceInterface {
                         return new PasswordAuthentication(userName, password);
                     }
                 });
-    }
-
-    private Timestamp getCurrentTime(){
-        java.util.Date date = new java.util.Date();
-        return new Timestamp(date.getTime());
     }
 
 

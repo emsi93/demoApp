@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -22,7 +23,7 @@ public class Link {
     private String email;
 
     @Column(name = "data", nullable = false)
-    private Timestamp data;
+    private LocalDateTime data;
 
     @Column(name="type", nullable = false)
     private String type;
@@ -31,14 +32,14 @@ public class Link {
 
     }
 
-    public Link(String link, String email, Timestamp data, String type) {
+    public Link(String link, String email, LocalDateTime data, String type) {
         this.link = link;
         this.email = email;
         this.data = data;
         this.type = type;
     }
 
-    public Link(Integer id, String link, String email, Timestamp data, String type) {
+    public Link(Integer id, String link, String email, LocalDateTime data, String type) {
         this.id = id;
         this.link = link;
         this.email = email;

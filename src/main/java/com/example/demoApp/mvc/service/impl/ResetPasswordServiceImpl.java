@@ -14,7 +14,6 @@ import com.example.demoapp.mvc.repository.UserRepository;
 import com.example.demoapp.mvc.service.EmailServiceInterface;
 import com.example.demoapp.mvc.service.ResetPasswordServiceInterface;
 import com.example.demoapp.mvc.validator.CaptchaValidator;
-import com.example.demoapp.utils.DateUtil;
 import com.example.demoapp.utils.ModelAndViewUtil;
 import com.example.demoapp.utils.PasswordEncoderUtil;
 import com.example.demoapp.email.EmailResetPassword;
@@ -30,19 +29,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Slf4j
 @Service
 @Transactional
-@ConfigurationProperties(prefix="application")
+@ConfigurationProperties(prefix = "application")
 public class ResetPasswordServiceImpl implements ResetPasswordServiceInterface {
 
     private static final String TYPE_LINK = "RESET";
 
     @Value("${host}")
     private String host;
+
+    @Value("${hours}")
+    private String numberOfHours;
 
     @Autowired
     private EmailServiceInterface emailServiceInterface;
@@ -68,8 +70,6 @@ public class ResetPasswordServiceImpl implements ResetPasswordServiceInterface {
     @Autowired
     private ErrorController errorController;
 
-    @Autowired
-    private DateUtil dateUtil;
 
     @Override
     public ModelAndViewUtil emailFormGet(HttpServletRequest request, HttpServletResponse response, EmailForm emailOrNull, Integer messageCodeOrNull) {
@@ -93,8 +93,8 @@ public class ResetPasswordServiceImpl implements ResetPasswordServiceInterface {
     public ModelAndViewUtil resetPasswordGet(HttpServletRequest request, HttpServletResponse response, PasswordsForm passwordsForm, Integer messageCodeOrNull) {
         ModelAndViewUtil modelAndView = new ModelAndViewUtil(request, JspViews.RESET_PASSWORD_VIEW);
         String token = request.getParameter(Config.TOKEN_PARAM);
-        if(gerErrorUrlCode(request, token) == 3)
-            return errorController.errorLinkReset(request,response);
+        if (gerErrorUrlCode(request, token) == 3)
+            return errorController.errorLinkReset(request, response);
         modelAndView.addObject("messageCode", messageCodeOrNull);
         modelAndView.addObject("recaptchaSiteKey", captchaConfig.getSiteKey());
         modelAndView.addObject("passwordsForm", passwordsForm);
@@ -109,7 +109,7 @@ public class ResetPasswordServiceImpl implements ResetPasswordServiceInterface {
             return resetPasswordGet(request, response, passwordsForm, 1);
         } else {
             resetPassword(request, passwordsForm);
-            return securityController.login(request, response,2);
+            return securityController.login(request, response, 2);
         }
     }
 
@@ -121,8 +121,7 @@ public class ResetPasswordServiceImpl implements ResetPasswordServiceInterface {
             String email = link.getEmail();
             if (email == null)
                 return 3;
-            Timestamp timestamp = link.getData();
-            if(!dateUtil.checkValidityUrl(timestamp))
+            if (link.getData().plusHours(Long.parseLong(numberOfHours)).isBefore(LocalDateTime.now()))
                 return 3;
             long countByEmailAndType = linkRepository.countByEmailAndType(email, TYPE_LINK);
             if (countByEmailAndType != 1 || countByLink != 1)
