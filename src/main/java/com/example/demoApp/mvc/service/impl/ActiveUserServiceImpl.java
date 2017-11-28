@@ -8,16 +8,16 @@ import com.example.demoapp.mvc.entity.User;
 import com.example.demoapp.mvc.repository.LinkRepository;
 import com.example.demoapp.mvc.repository.UserRepository;
 import com.example.demoapp.mvc.service.ActiveUserServiceInterface;
-import com.example.demoapp.utils.DateUtil;
 import com.example.demoapp.utils.ModelAndViewUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
@@ -39,8 +39,9 @@ public class ActiveUserServiceImpl implements ActiveUserServiceInterface {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private DateUtil dateUtil;
+    @Value("${hours}")
+    private String numberOfHours;
+
 
     @Override
     public ModelAndViewUtil activeUser(HttpServletRequest request, HttpServletResponse response) {
@@ -80,8 +81,7 @@ public class ActiveUserServiceImpl implements ActiveUserServiceInterface {
         String email = link.getEmail();
         if (email == null)
             return false;
-        Timestamp timestamp = link.getData();
-        if (!dateUtil.checkValidityUrl(timestamp))
+        if (link.getData().plusHours(Long.parseLong(numberOfHours)).isBefore(LocalDateTime.now()))
             return false;
         long countByEmailAndType = linkRepository.countByEmailAndType(email, TYPE_LINK);
         boolean isValidLink = true;
